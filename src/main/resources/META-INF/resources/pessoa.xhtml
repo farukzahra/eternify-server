@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Eternify</title>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:panel id="pnDados" header="Eternify">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-12 ui-md-4">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+						<p:inputText id="nome" value="#{pessoaMB.pessoa.nome}"
+							placeholder="Nome" />
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-4">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
+						<p:calendar value="#{pessoaMB.pessoa.dataNascimento}"
+							placeholder="Data de Nascimento" pattern="dd/MM/yyyy" />
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-4">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i
+							class="fa fa-plus-square"></i></span>
+						<p:calendar value="#{pessoaMB.pessoa.dataFalecimento}"
+							placeholder="Data de Falecimento" pattern="dd/MM/yyyy" />
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-md-12">
+					<p:editor id="editor" widgetVar="editorWidget"
+						value="#{pessoaMB.pessoa.descricao}" />
+				</div>
+
+				<div class="ui-g-12 ui-md-2">
+					<p:commandButton id="submit" value="Salvar" process="@this,pnDados"
+						actionListener="#{pessoaMB.addPessoa}" update="dtDados" />
+				</div>
+			</div>
+		</p:panel>
+
+		<p:separator />
+
+		<p:dataTable id="dtDados" var="p" value="#{pessoaMB.pessoas}"
+			selectionMode="single" selection="#{pessoaMB.pessoa}" rowKey="#{p}" paginator="true" paginatorPosition="bottom" rows="5"> 
+			<p:ajax event="rowSelect" process="@this" update=":form:pnDados"/>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{p.nome}" />
+			</p:column>
+
+			<p:column headerText="Descrição">
+				<h:outputText value="#{p.descricao}" escape="false" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
