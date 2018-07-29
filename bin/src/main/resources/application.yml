@@ -1,0 +1,8 @@
+jsf:
+  primefaces: 
+    theme: omega
+    FONT_AWESOME : true
+
+server:
+  context-path: /eternify
+  port: 8080
