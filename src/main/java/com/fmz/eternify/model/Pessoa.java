@@ -47,6 +47,8 @@ public class Pessoa implements Serializable {
 	private String religiao;
 	
 	private String profissao;
+	
+	private String citacao;
 
 	@NotBlank
 	@Column(length = 100000)
@@ -70,7 +72,7 @@ public class Pessoa implements Serializable {
 	@LastModifiedDate
 	private Date updatedAt;
 
-	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos, String religiao, String profissao) {
+	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos, String religiao, String profissao, String citacao) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
