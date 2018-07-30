@@ -3,32 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<style>
-.nome {
-	font-size: 24px;
-}
-
-.idade {
-	font-size: 12px;
-}
-
-.datas {
-	font-size: 14px;
-}
-
-.foto-profile {
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-}
-</style>
 
 	<title>Eternify</title>
 	<link rel="stylesheet"
@@ -42,14 +20,14 @@
 	<h:form id="form">
 		<p:panel id="pnDados" header="Eternify">
 			<div class="ui-g ui-fluid">
-				<div class="ui-g-12 ui-md-4">
+				<div class="ui-g-12 ui-md-6">
 					<div class="ui-inputgroup">
 						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
 						<p:inputText id="nome" value="#{pessoaMB.pessoa.nome}"
 							placeholder="Nome" required="true" />
 					</div>
 				</div>
-				<div class="ui-g-12 ui-md-4">
+				<div class="ui-g-12 ui-md-3">
 					<div class="ui-inputgroup">
 						<span class="ui-inputgroup-addon"><i
 							class="fa fa-birthday-cake"></i></span>
@@ -58,7 +36,7 @@
 							required="true" />
 					</div>
 				</div>
-				<div class="ui-g-12 ui-md-4">
+				<div class="ui-g-12 ui-md-3">
 					<div class="ui-inputgroup">
 						<span class="ui-inputgroup-addon"><i
 							class="fa fa-plus-square"></i></span>
@@ -68,11 +46,28 @@
 					</div>
 				</div>
 
-				<div class="ui-g-12 ui-md-4">
+				<div class="ui-g-12 ui-md-1">
 					<div class="ui-inputgroup">
 						<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
 						<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}"
 							placeholder="Filhos" required="false" />
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-md-3">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-book"></i></span>
+						<p:inputText id="religiao" value="#{pessoaMB.pessoa.religiao}"
+							placeholder="Religião" required="false" />
+					</div>
+				</div>
+
+
+				<div class="ui-g-12 ui-md-3">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-building"></i></span>
+						<p:inputText id="profissao" value="#{pessoaMB.pessoa.profissao}"
+							placeholder="Profissão" required="false" />
 					</div>
 				</div>
 
@@ -94,6 +89,13 @@
 						actionListener="#{pessoaMB.addPessoa}" update="dtDados,pnDados"
 						icon="fa fa-save" />
 				</div>
+
+				<div class="ui-g-12 ui-md-2">
+					<p:commandButton id="qrcode" value="QRCODE" process="@this"
+						update="barcode" icon="fa fa-save"
+						disabled="#{pessoaMB.pessoa.id == null}"
+						onclick="PF('dlgBarcode').show()" />
+				</div>
 			</div>
 		</p:panel>
 
@@ -102,42 +104,23 @@
 		<p:dataGrid id="dtDados" var="p" value="#{pessoaMB.pessoas}"
 			columns="1" layout="grid" rows="1" paginator="true"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="6,12,16" paginatorPosition="bottom">
-
-			<p:panel header="#{p.nome}" style="text-align:center">
-				<h:panelGrid columns="1" style="width:100%">
-
-					<p:commandLink update=":form:pnDados" title="Ver" process="@this">
-						<h:outputText styleClass="fa fa-search" style="margin:0 auto;" />
-						<f:setPropertyActionListener value="#{p}"
-							target="#{pessoaMB.pessoa}" />
-					</p:commandLink>
-
-					<div class="recipe-card">
-
-						<aside> <img src="#{p.foto}" alt="#{p.nome}" /> </aside>
-
-						<article>
-
-						<h2>#{p.nome}</h2>
-						<h3>#{p.idade} anos</h3>
-
-						<ul>
-							<li><span class="fa fa-child"></span><span>#{p.filhos}</span></li>
-							<li><span class="fa fa-birthday-cake"></span><span>#{p.dataNascimentoStr}</span></li>
-							<li><span class="fa fa-plus-square"></span><span>#{p.dataFalecimentoStr}</span></li>
-						</ul>
-
-						<p>#{p.descricao}</p>
-
-
-						</article>
-
-					</div>
-				</h:panelGrid>
-			</p:panel>
-
+			rowsPerPageTemplate="6,12,16" paginatorPosition="bottom"
+			emptyMessage="">
+			<p:commandLink update=":form:pnDados" title="Ver" process="@this">
+				<h:outputText styleClass="fa fa-search" style="margin:0 auto;" />
+				<f:setPropertyActionListener value="#{p}"
+					target="#{pessoaMB.pessoa}" />
+			</p:commandLink>
+			<ui:include src="card.xhtml">
+				<ui:param name="p" value="#{p}" />
+			</ui:include>
 		</p:dataGrid>
+
+		<p:dialog widgetVar="dlgBarcode">
+			<p:barcode id="barcode" value="#{pessoaMB.pessoa.qrCode}" type="qr" />
+			#{pessoaMB.pessoa.qrCode}
+		</p:dialog>
+
 	</h:form>
 </h:body>
 </html>

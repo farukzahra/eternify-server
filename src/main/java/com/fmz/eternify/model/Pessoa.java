@@ -43,6 +43,10 @@ public class Pessoa implements Serializable {
 
 	@Column(length = 100000)
 	private String foto;
+	
+	private String religiao;
+	
+	private String profissao;
 
 	@NotBlank
 	@Column(length = 100000)
@@ -66,17 +70,35 @@ public class Pessoa implements Serializable {
 	@LastModifiedDate
 	private Date updatedAt;
 
-	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos) {
+	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos, String religiao, String profissao) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.foto = foto;
 		this.filhos = filhos;
+		this.religiao = religiao;
+		this.profissao = profissao;		
+	}
+	
+	public String getQrCode() {
+		//return "http://localhost:8080/findpessoa.jsf?pessoa="+id;
+		return "https://eternify.herokuapp.com//findpessoa.jsf?pessoa="+id;
 	}
 
 	public String getDataNascimentoStr() {
 		return Utils.dateToString(this.dataNascimento, "dd/MM/yyyy");
 
+	}
+	
+	public String getDescricaoFormatado() {
+		String retorno = "";
+		if(descricao != null) {
+			String[] split = descricao.split("\\r?\\n");
+			for (String string : split) {
+				retorno += "<p>"+string+"</p>";
+			}
+		}
+		return retorno;
 	}
 
 	public String getDataFalecimentoStr() {
@@ -84,7 +106,7 @@ public class Pessoa implements Serializable {
 
 	}
 
-	public Integer getIdade() {
+	public String getIdade() {
 		Instant instant = dataNascimento.toInstant();
 		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
 		LocalDate lddataNascimento = zdt.toLocalDate();
@@ -94,9 +116,21 @@ public class Pessoa implements Serializable {
 		LocalDate lddataFalecimento = zdt2.toLocalDate();
 
 		if ((dataNascimento != null) && (dataFalecimento != null)) {
-			return Period.between(lddataNascimento, lddataFalecimento).getYears();
+			int anos = Period.between(lddataNascimento, lddataFalecimento).getYears();
+			if(anos <= 0) {
+				int meses = Period.between(lddataNascimento, lddataFalecimento).getMonths();
+				if(meses > 1) {
+					return meses + " meses";
+				}else {
+					return meses + " mês";
+				}
+			}else if(anos == 1) {
+				return anos + " ano";
+			}else {
+				return anos + " anos";
+			}
 		} else {
-			return 0;
+			return "0";
 		}
 
 	}
