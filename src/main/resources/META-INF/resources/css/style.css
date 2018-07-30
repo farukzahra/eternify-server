@@ -1,3 +1,7 @@
+.fa {
+	vertical-align: middle !important;
+}
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

@@ -4,40 +4,39 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:panel header="" style="text-align:center">
-		<h:panelGroup>
+	<h:panelGroup style="text-align:center">
 
 
-			<div class="recipe-card">
+		<div class="recipe-card">
 
-				<aside>
-					<img src="#{p.foto}" alt="#{p.nome}" />
-				</aside>
+			<aside>
+				<img src="#{p.foto}" alt="#{p.nome}" />
+			</aside>
 
-				<article>
+			<article>
 
-					<h2>#{p.nome}</h2>
-					<h3>#{p.idade}</h3>
+				<h2>#{p.nome}</h2>
+				<h3>#{p.idade}</h3>
 
-					<ul>
-						<li><span class="fa fa-2x fa-birthday-cake"></span><span>#{p.dataNascimentoStr}</span></li>
-						<li><span class="fa fa-2x fa-plus-square"></span><span>#{p.dataFalecimentoStr}</span></li>
-					</ul>
+				<ul>
+					<li><span class="fa fa-2x fa-birthday-cake"></span><span>#{p.dataNascimentoStr}</span></li>
+					<li><span class="fa fa-2x fa-plus-square"></span><span>#{p.dataFalecimentoStr}</span></li>
+				</ul>
 
-					<ul>
-						<li><span class="fa fa-2x fa-child"></span><span>#{p.filhos}</span></li>
-						<li><span class="fa fa-2x fa-book"></span><span>#{p.religiao}</span></li>
-						<li><span class="fa fa-2x fa-building"></span><span>#{p.profissao}</span></li>
-					</ul>
-
-
-					<h:outputFormat value="#{p.descricaoFormatado}" escape="false" />
+				<ul>
+					<li><span class="fa fa-2x fa-child"></span><span>#{p.filhos}</span></li>
+					<li><span class="fa fa-2x fa-book"></span><span>#{p.religiao}</span></li>
+					<li><span class="fa fa-2x fa-building"></span><span>#{p.profissao}</span></li>
+				</ul>
 
 
-				</article>
+				<h:outputFormat value="#{p.descricaoFormatado}" escape="false" />
 
-			</div>
-		</h:panelGroup>
-	</p:panel>
+
+			</article>
+
+		</div>
+	</h:panelGroup>
+
 
 </ui:composition>

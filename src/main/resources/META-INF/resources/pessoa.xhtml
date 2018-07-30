@@ -106,18 +106,22 @@
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="6,12,16" paginatorPosition="bottom"
 			emptyMessage="">
-			<p:commandLink update=":form:pnDados" title="Ver" process="@this">
-				<h:outputText styleClass="fa fa-search" style="margin:0 auto;" />
-				<f:setPropertyActionListener value="#{p}"
-					target="#{pessoaMB.pessoa}" />
-			</p:commandLink>
-			<ui:include src="card.xhtml">
-				<ui:param name="p" value="#{p}" />
-			</ui:include>
+			<p:panel header="" style="text-align:center">
+				<p:commandLink update=":form:pnDados,:form:barcode" title="Ver"
+					process="@this">
+					<h:outputText styleClass="fa fa-edit fa-5x" style="margin:0 auto;" />
+					<f:setPropertyActionListener value="#{p}"
+						target="#{pessoaMB.pessoa}" />
+				</p:commandLink>
+				<ui:include src="card.xhtml">
+					<ui:param name="p" value="#{p}" />
+				</ui:include>
+			</p:panel>
 		</p:dataGrid>
 
 		<p:dialog widgetVar="dlgBarcode">
 			<p:barcode id="barcode" value="#{pessoaMB.pessoa.qrCode}" type="qr" />
+			<br />
 			#{pessoaMB.pessoa.qrCode}
 		</p:dialog>
 
