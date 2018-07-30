@@ -2,10 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<style>
+.nome {
+	font-size: 24px;
+}
+
+.idade {
+	font-size: 12px;
+}
+
+.datas {
+	font-size: 14px;
+}
+
+.foto-profile {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+</style>
+
 	<title>Eternify</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"></link>
+	<link rel='stylesheet'
+		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'></link>
+	<link rel="stylesheet" href="css/style.css"></link>
 </h:head>
 
 <h:body>
@@ -16,14 +46,16 @@
 					<div class="ui-inputgroup">
 						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
 						<p:inputText id="nome" value="#{pessoaMB.pessoa.nome}"
-							placeholder="Nome" />
+							placeholder="Nome" required="true" />
 					</div>
 				</div>
 				<div class="ui-g-12 ui-md-4">
 					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
+						<span class="ui-inputgroup-addon"><i
+							class="fa fa-birthday-cake"></i></span>
 						<p:calendar value="#{pessoaMB.pessoa.dataNascimento}"
-							placeholder="Data de Nascimento" pattern="dd/MM/yyyy" />
+							placeholder="Data de Nascimento" pattern="dd/MM/yyyy"
+							required="true" />
 					</div>
 				</div>
 				<div class="ui-g-12 ui-md-4">
@@ -31,36 +63,81 @@
 						<span class="ui-inputgroup-addon"><i
 							class="fa fa-plus-square"></i></span>
 						<p:calendar value="#{pessoaMB.pessoa.dataFalecimento}"
-							placeholder="Data de Falecimento" pattern="dd/MM/yyyy" />
+							placeholder="Data de Falecimento" pattern="dd/MM/yyyy"
+							required="true" />
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-md-4">
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
+						<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}"
+							placeholder="Filhos" required="false" />
 					</div>
 				</div>
 
 				<div class="ui-g-12 ui-md-12">
-					<p:editor id="editor" widgetVar="editorWidget"
-						value="#{pessoaMB.pessoa.descricao}" />
+					<div class="ui-inputgroup">
+						<span class="ui-inputgroup-addon"><i class="fa fa-link"></i></span>
+						<p:inputText id="foto" value="#{pessoaMB.pessoa.foto}"
+							placeholder="URL foto" required="true" />
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-md-12">
+					<p:inputTextarea id="editor" value="#{pessoaMB.pessoa.descricao}"
+						height="1000" placeholder="Fale sobre o falecido..." />
 				</div>
 
 				<div class="ui-g-12 ui-md-2">
 					<p:commandButton id="submit" value="Salvar" process="@this,pnDados"
-						actionListener="#{pessoaMB.addPessoa}" update="dtDados" />
+						actionListener="#{pessoaMB.addPessoa}" update="dtDados,pnDados"
+						icon="fa fa-save" />
 				</div>
 			</div>
 		</p:panel>
 
 		<p:separator />
 
-		<p:dataTable id="dtDados" var="p" value="#{pessoaMB.pessoas}"
-			selectionMode="single" selection="#{pessoaMB.pessoa}" rowKey="#{p}" paginator="true" paginatorPosition="bottom" rows="5"> 
-			<p:ajax event="rowSelect" process="@this" update=":form:pnDados"/>
+		<p:dataGrid id="dtDados" var="p" value="#{pessoaMB.pessoas}"
+			columns="1" layout="grid" rows="1" paginator="true"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="6,12,16" paginatorPosition="bottom">
 
-			<p:column headerText="Nome">
-				<h:outputText value="#{p.nome}" />
-			</p:column>
+			<p:panel header="#{p.nome}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
 
-			<p:column headerText="Descrição">
-				<h:outputText value="#{p.descricao}" escape="false" />
-			</p:column>
-		</p:dataTable>
+					<p:commandLink update=":form:pnDados" title="Ver" process="@this">
+						<h:outputText styleClass="fa fa-search" style="margin:0 auto;" />
+						<f:setPropertyActionListener value="#{p}"
+							target="#{pessoaMB.pessoa}" />
+					</p:commandLink>
+
+					<div class="recipe-card">
+
+						<aside> <img src="#{p.foto}" alt="#{p.nome}" /> </aside>
+
+						<article>
+
+						<h2>#{p.nome}</h2>
+						<h3>#{p.idade} anos</h3>
+
+						<ul>
+							<li><span class="fa fa-child"></span><span>#{p.filhos}</span></li>
+							<li><span class="fa fa-birthday-cake"></span><span>#{p.dataNascimentoStr}</span></li>
+							<li><span class="fa fa-plus-square"></span><span>#{p.dataFalecimentoStr}</span></li>
+						</ul>
+
+						<p>#{p.descricao}</p>
+
+
+						</article>
+
+					</div>
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
 	</h:form>
 </h:body>
 </html>

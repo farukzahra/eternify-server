@@ -1,6 +1,11 @@
 package com.fmz.eternify.model;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,6 +23,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fmz.eternify.utils.Utils;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,12 +41,18 @@ public class Pessoa implements Serializable {
 	@NotBlank
 	private String nome;
 
+	@Column(length = 100000)
+	private String foto;
+
 	@NotBlank
+	@Column(length = 100000)
 	private String descricao;
-	
+
+	private Integer filhos = 0;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFalecimento;
 
@@ -53,10 +66,38 @@ public class Pessoa implements Serializable {
 	@LastModifiedDate
 	private Date updatedAt;
 
-	public Pessoa(@NotBlank String nome, @NotBlank String descricao) {
+	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
+		this.foto = foto;
+		this.filhos = filhos;
 	}
 
+	public String getDataNascimentoStr() {
+		return Utils.dateToString(this.dataNascimento, "dd/MM/yyyy");
+
+	}
+
+	public String getDataFalecimentoStr() {
+		return Utils.dateToString(this.dataFalecimento, "dd/MM/yyyy");
+
+	}
+
+	public Integer getIdade() {
+		Instant instant = dataNascimento.toInstant();
+		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+		LocalDate lddataNascimento = zdt.toLocalDate();
+
+		Instant instant2 = dataFalecimento.toInstant();
+		ZonedDateTime zdt2 = instant2.atZone(ZoneId.systemDefault());
+		LocalDate lddataFalecimento = zdt2.toLocalDate();
+
+		if ((dataNascimento != null) && (dataFalecimento != null)) {
+			return Period.between(lddataNascimento, lddataFalecimento).getYears();
+		} else {
+			return 0;
+		}
+
+	}
 }

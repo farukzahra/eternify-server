@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmz.eternify.controller.PessoaController;
@@ -27,6 +28,7 @@ public class PessoaMB {
 	public void addPessoa() {
 		pessoaController.addPessoa(pessoa);
 		pessoa = new Pessoa();
+		PrimeFaces.current().resetInputs("form:pnDados");
 		carregarLista();
 	}
 
