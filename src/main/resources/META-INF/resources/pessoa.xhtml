@@ -15,6 +15,9 @@
 		<div class="Container100">
 			<div class="Card">
 
+				<h1 class="CardBigTopic">Criar Memória</h1>
+				<div class="SeparatorFull"></div>
+
 				<h:panelGroup id="pnDados">
 					<div class="ui-g ui-fluid">
 						<div class="ui-g-12 ui-md-6">
@@ -132,9 +135,11 @@
 		</div>
 
 		<p:dialog widgetVar="dlgBarcode">
-			<p:barcode id="barcode" value="#{pessoaMB.pessoa.qrCode}" type="qr" />
-			<br />
+			<h:panelGroup id="barcode">
+				<p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" />
+				<br />
 			#{pessoaMB.pessoa.qrCode}
+			</h:panelGroup>
 		</p:dialog>
 
 	</ui:define>

@@ -84,7 +84,7 @@ public class Pessoa implements Serializable {
 	
 	public String getQrCode() {
 		//return "http://localhost:8080/findpessoa.jsf?pessoa="+id;
-		return "https://eternify.herokuapp.com/findpessoa.jsf?pessoa="+id;
+		return "http://eternify.com.br/findpessoa.jsf?pessoa="+id;
 	}
 
 	public String getDataNascimentoStr() {

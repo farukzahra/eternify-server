@@ -1,0 +1,24 @@
+jsf:
+  primefaces: 
+    theme: omega
+    FONT_AWESOME : true
+
+server:
+  context-path: /eternify
+  port: 8080
+  
+security:
+  oauth2:
+    client:
+      clientId: 1032856516397-sc4vh2fo9hn0jkjnt40r2as97ar868p1.apps.googleusercontent.com
+      clientSecret: xWlZbOWhNLbl4u0wzLrx7fl8
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true

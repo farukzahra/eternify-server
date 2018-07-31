@@ -32,8 +32,8 @@
 	<h:form>
 
 
-		<div class="Wid50 MarAuto">
-			<div class="Wid50 MarAuto WidAutoOnMobile TexAlCenter">
+		<div class="Wid70 MarAuto">
+			<div class="Wid70 MarAuto WidAutoOnMobile TexAlCenter">
 
 				<div class="Wid70 MarAuto WidAutoOnMobile">
 
@@ -54,32 +54,15 @@
 						<div class="Container100">
 							<p:inputText placeholder="Email" style="padding:15px !important;"
 								value="#{loginMB.usuario.login}" />
-						</div>
+						</div>						
 						<div class="Container100">
-							<p:password placeholder="Senha" style="padding:15px !important;"
-								value="#{loginMB.usuario.senha}" />
-						</div>
-						<div class="EmptyBox20"></div>
-						<div class="Container100">
-							<p:commandButton value="Logar" styleClass="GreenButton White"
-								icon="fa fa-lock Fs16" action="#{loginMB.doLogin}" process="@form"/>
-						</div>
-						<div class="Container100">
-							<p:commandButton value="Criar uma Conta"
-								styleClass="OrangeButton White" icon="fa fa-clipboard Fs16" action="cadastro.jsf"/>
+							<p:commandButton action="#{loginMB.doCadastro}" value="Cadastrar"
+								styleClass="GreenButton White" icon="fa fa-clipboard Fs16"/>
 						</div>
 
 						<div class="EmptyBox10"></div>
 						<div class="Separator"></div>
 						<div class="EmptyBox10"></div>
-
-						<span class="DispBlock OvHidden FontLatoBold Fs16 Leaden">
-							Logar Com</span>
-						<div class="EmptyBox10"></div>
-						<div class="Container100 Responsive100">
-							<p:commandButton type="button" icon="fa fa-google-plus Fs16"
-								value="Google" styleClass="RedButton White" />
-						</div>
 					</div>
 
 					<div class="EmptyBox20"></div>
