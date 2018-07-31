@@ -5,5 +5,5 @@ jsf:
 
 server:
   servlet:
-    context-path: /eternify
+    context-path: /
     port: 8080
