@@ -1,25 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Eternify</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
-		<link rel="stylesheet" href="css/omega.css"></link>
-	<style>
-.painel-login {
-	width: 50%;
-	margin: 0 auto;
-}
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>PrimeFaces Olympos</title>
+	<ui:insert name="head" />
 
+	<style>
 .logo {
 	display: block;
 	margin-left: auto;
@@ -27,41 +24,88 @@
 	width: 100%;
 }
 </style>
+
 </h:head>
 
-<h:body styleClass="login-body">
-	<h:form id="form">
-		<h:panelGroup id="pnDados">
-			<div id="login-wrapper">
-				<div id="login-container">
-					<div class="ui-g ui-fluid">
-						<div class="ui-g-12 ui-md-12">
-							<img src="images/eternify.png" class="logo" />
-						</div>
-						<div class="ui-g-12">
-							<div class="ui-inputgroup">
-								<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-								<p:inputText id="login" value="#{pessoaMB.pessoa.nome}"
-									placeholder="Login" required="true" />
-							</div>
-						</div>
-						<div class="ui-g-12">
-							<div class="ui-inputgroup">
-								<span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-								<p:password id="senha" value="#{pessoaMB.pessoa.nome}"
-									placeholder="Senha" required="true" />
-							</div>
-						</div>
-						<div class="ui-g-12">
-							<p:commandButton id="submit" value="Login"
-								process="@this,pnDados" actionListener="#{pessoaMB.addPessoa}"
-								icon="fa fa-check" />
-						</div>
+<h:body style="background-color: #232e5f;">
+
+
+
+	<div class="Wid70 MarAuto">
+		<div class="Wid70 MarAuto WidAutoOnMobile TexAlCenter">
+
+			<div class="Wid70 MarAuto WidAutoOnMobile">
+
+
+				<div class="EmptyBox30"></div>
+				<div class="Container50 Responsive50"></div>
+				<div class="Container50 Responsive50"></div>
+				<div class="EmptyBox10 ShowOnMobile"></div>
+
+				<div class="EmptyBox100 ShowOnDesktop"></div>
+				<div class="EmptyBox20 ShowOnMobile"></div>
+
+				<div class="EmptyBox30"></div>
+				<div class="Card ui-fluid ShadowEffect">
+					<div class="Container100">
+						<img src="images/eternify.png" class="logo" />
+					</div>
+					<div class="Container100">
+						<p:inputText placeholder="E-Mail Address"
+							style="padding:15px !important;" />
+					</div>
+					<div class="Container100">
+						<p:password placeholder="Password"
+							style="padding:15px !important;" />
+					</div>
+					<div class="EmptyBox20"></div>
+					<div class="Container100">
+						<p:commandButton type="button" value="Logar"
+							styleClass="GreenButton White" icon="fa fa-lock Fs16" />
+					</div>
+					<div class="Container100">
+						<p:commandButton type="button" value="Criar uma Conta"
+							styleClass="OrangeButton White" icon="fa fa-clipboard Fs16" />
+					</div>
+
+					<div class="EmptyBox10"></div>
+					<div class="Separator"></div>
+					<div class="EmptyBox10"></div>
+
+					<span class="DispBlock OvHidden FontLatoBold Fs16 Leaden">
+						Logar Com</span>
+					<div class="EmptyBox10"></div>
+					<div class="Container100 Responsive100">
+						<p:commandButton type="button" icon="fa fa-google-plus Fs16"
+							value="Google" styleClass="RedButton White" />
 					</div>
 				</div>
-				<div class="login-footer"><i class="fa fa-copyright "></i> ETERNIFY - 2018 - v.0.0.1</div>
+
+				<div class="EmptyBox20"></div>
+				<div class="Wid100 FontLatoRegular Fs12 TransparentWhite">
+					<i class="fa fa-copyright DispInlBlock"></i> ETERNIFY | 2018 |
+					v.0.0.1
+				</div>
+				<div class="EmptyBox30"></div>
 			</div>
-		</h:panelGroup>
-	</h:form>
+		</div>
+	</div>
+
+	<style>
+.ui-button-text, .ui-button-text-only .ui-button-text {
+	padding: 15px !important;
+	transition: none !important;
+}
+</style>
+
+	<h:outputStylesheet name="css/core-layout.css" library="olympos-layout" />
+	<h:outputStylesheet name="css/font-awesome.css"
+		library="olympos-layout" />
+	<h:outputStylesheet name="css/animate.css" library="olympos-layout" />
+	<h:outputStylesheet name="css/olympos-layout.css"
+		library="olympos-layout" />
+	<h:outputStylesheet name="css/olympos-font.css"
+		library="olympos-layout" />
 </h:body>
+
 </html>

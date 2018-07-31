@@ -1,133 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template/template.xhtml">
 
-<h:head>
+	<ui:define name="content">
 
-	<title>Eternify</title>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"></link>
-	<link rel='stylesheet'
-		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'></link>
-	<link rel="stylesheet" href="css/pessoa.css"></link>
-</h:head>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"></link>
+		<link rel='stylesheet'
+			href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'></link>
+		<link rel="stylesheet" href="css/pessoa.css"></link>
 
-<h:body>
-	<h:form id="form">
-		<p:panel id="pnDados" header="Eternify">
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-12 ui-md-6">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-						<p:inputText id="nome" value="#{pessoaMB.pessoa.nome}"
-							placeholder="Nome" required="true" />
+		<div class="Container100">
+			<div class="Card">
+
+				<h:panelGroup id="pnDados">
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-6">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+								<p:inputText id="nome" value="#{pessoaMB.pessoa.nome}"
+									placeholder="Nome" required="true" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-md-3">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i
+									class="fa fa-birthday-cake"></i></span>
+								<p:calendar value="#{pessoaMB.pessoa.dataNascimento}"
+									placeholder="Data de Nascimento" pattern="dd/MM/yyyy"
+									required="true" />
+							</div>
+						</div>
+						<div class="ui-g-12 ui-md-3">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i
+									class="fa fa-plus-square"></i></span>
+								<p:calendar value="#{pessoaMB.pessoa.dataFalecimento}"
+									placeholder="Data de Falecimento" pattern="dd/MM/yyyy"
+									required="true" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-md-1">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
+								<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}"
+									placeholder="Filhos" required="false" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-md-3">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i class="fa fa-book"></i></span>
+								<p:inputText id="religiao" value="#{pessoaMB.pessoa.religiao}"
+									placeholder="Religião" required="false" />
+							</div>
+						</div>
+
+
+						<div class="ui-g-12 ui-md-3">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i
+									class="fa fa-building"></i></span>
+								<p:inputText id="profissao" value="#{pessoaMB.pessoa.profissao}"
+									placeholder="Profissão" required="false" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-md-12">
+							<div class="ui-inputgroup">
+								<span class="ui-inputgroup-addon"><i class="fa fa-link"></i></span>
+								<p:inputText id="foto" value="#{pessoaMB.pessoa.foto}"
+									placeholder="URL foto" required="true" />
+							</div>
+						</div>
+
+
+
+						<div class="ui-g-12 ui-md-12">
+							<p:inputTextarea id="citacao" value="#{pessoaMB.pessoa.citacao}"
+								height="200" placeholder="Citação preferida..." maxlength="255" />
+						</div>
+
+
+						<div class="ui-g-12 ui-md-12">
+							<p:inputTextarea id="editor" value="#{pessoaMB.pessoa.descricao}"
+								height="1000" placeholder="Fale sobre o falecido..."
+								maxlength="10000" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="submit" value="Salvar"
+								process="@this,pnDados" actionListener="#{pessoaMB.addPessoa}"
+								update="dtDados,pnDados" icon="fa fa-save" styleClass="White" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="qrcode" value="QRCODE" process="@this"
+								update="barcode" icon="fa fa-link"
+								disabled="#{pessoaMB.pessoa.id == null}"
+								onclick="PF('dlgBarcode').show()" styleClass="GreenButton White" />
+						</div>
 					</div>
-				</div>
-				<div class="ui-g-12 ui-md-3">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i
-							class="fa fa-birthday-cake"></i></span>
-						<p:calendar value="#{pessoaMB.pessoa.dataNascimento}"
-							placeholder="Data de Nascimento" pattern="dd/MM/yyyy"
-							required="true" />
-					</div>
-				</div>
-				<div class="ui-g-12 ui-md-3">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i
-							class="fa fa-plus-square"></i></span>
-						<p:calendar value="#{pessoaMB.pessoa.dataFalecimento}"
-							placeholder="Data de Falecimento" pattern="dd/MM/yyyy"
-							required="true" />
-					</div>
-				</div>
+				</h:panelGroup>
 
-				<div class="ui-g-12 ui-md-1">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
-						<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}"
-							placeholder="Filhos" required="false" />
-					</div>
-				</div>
+				<p:separator />
 
-				<div class="ui-g-12 ui-md-3">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-book"></i></span>
-						<p:inputText id="religiao" value="#{pessoaMB.pessoa.religiao}"
-							placeholder="Religião" required="false" />
-					</div>
-				</div>
+				<p:dataGrid id="dtDados" var="p" value="#{pessoaMB.pessoas}"
+					columns="1" layout="grid" rows="1" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="6,12,16" paginatorPosition="bottom"
+					emptyMessage="">
+					<p:panel header="" style="text-align:center">
+						<p:commandLink update=":form:pnDados,:form:barcode" title="Ver"
+							process="@this">
+							<h:outputText styleClass="fa fa-edit fa-5x"
+								style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{p}"
+								target="#{pessoaMB.pessoa}" />
+						</p:commandLink>
+						<ui:include src="card.xhtml">
+							<ui:param name="p" value="#{p}" />
+						</ui:include>
+					</p:panel>
+				</p:dataGrid>
 
 
-				<div class="ui-g-12 ui-md-3">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-building"></i></span>
-						<p:inputText id="profissao" value="#{pessoaMB.pessoa.profissao}"
-							placeholder="Profissão" required="false" />
-					</div>
-				</div>
-
-				<div class="ui-g-12 ui-md-12">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-link"></i></span>
-						<p:inputText id="foto" value="#{pessoaMB.pessoa.foto}"
-							placeholder="URL foto" required="true" />
-					</div>
-				</div>
-
-				
-
-				<div class="ui-g-12 ui-md-12">
-					<p:inputTextarea id="citacao" value="#{pessoaMB.pessoa.citacao}"
-						height="200" placeholder="Citação preferida..."
-						maxlength="255" />
-				</div>
-
-
-				<div class="ui-g-12 ui-md-12">
-					<p:inputTextarea id="editor" value="#{pessoaMB.pessoa.descricao}"
-						height="1000" placeholder="Fale sobre o falecido..."
-						maxlength="10000" />
-				</div>
-
-				<div class="ui-g-12 ui-md-2">
-					<p:commandButton id="submit" value="Salvar" process="@this,pnDados"
-						actionListener="#{pessoaMB.addPessoa}" update="dtDados,pnDados"
-						icon="fa fa-save" />
-				</div>
-
-				<div class="ui-g-12 ui-md-2">
-					<p:commandButton id="qrcode" value="QRCODE" process="@this"
-						update="barcode" icon="fa fa-save"
-						disabled="#{pessoaMB.pessoa.id == null}"
-						onclick="PF('dlgBarcode').show()" />
-				</div>
 			</div>
-		</p:panel>
-
-		<p:separator />
-
-		<p:dataGrid id="dtDados" var="p" value="#{pessoaMB.pessoas}"
-			columns="1" layout="grid" rows="1" paginator="true"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="6,12,16" paginatorPosition="bottom"
-			emptyMessage="">
-			<p:panel header="" style="text-align:center">
-				<p:commandLink update=":form:pnDados,:form:barcode" title="Ver"
-					process="@this">
-					<h:outputText styleClass="fa fa-edit fa-5x" style="margin:0 auto;" />
-					<f:setPropertyActionListener value="#{p}"
-						target="#{pessoaMB.pessoa}" />
-				</p:commandLink>
-				<ui:include src="card.xhtml">
-					<ui:param name="p" value="#{p}" />
-				</ui:include>
-			</p:panel>
-		</p:dataGrid>
+		</div>
 
 		<p:dialog widgetVar="dlgBarcode">
 			<p:barcode id="barcode" value="#{pessoaMB.pessoa.qrCode}" type="qr" />
@@ -135,6 +137,5 @@
 			#{pessoaMB.pessoa.qrCode}
 		</p:dialog>
 
-	</h:form>
-</h:body>
-</html>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,17 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:po="http://primefaces.org/olympos">
+
+    <ul id="layout-tab-menu">
+        <li><a href="#" class="active" rel="layout-menu"> <i class="icon-11"></i> <span class="layout-tab-menu-link-text"><span></span> Olympos Main Menu</span> </a></li>        
+    </ul>
+    
+    <ui:include src="layoutmenu.xhtml"/>
+    
+    <ui:include src="othertabsubmenus.xhtml"/>
+
+</ui:composition>
