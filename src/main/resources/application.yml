@@ -1,6 +1,6 @@
 jsf:
   primefaces: 
-    theme: omega
+    theme: olympos
     FONT_AWESOME : true
 
 server:
