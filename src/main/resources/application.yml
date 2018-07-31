@@ -7,3 +7,5 @@ server:
   servlet:
     context-path: /
     port: 8080
+  welcome-file-list:
+    welcome-file: card.xhtml
