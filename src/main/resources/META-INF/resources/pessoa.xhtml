@@ -135,11 +135,26 @@
 		</div>
 
 		<p:dialog widgetVar="dlgBarcode">
-			<h:panelGroup id="barcode">
-				<p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" />
-				<br />
-			#{pessoaMB.pessoa.qrCode}
+
+			<h:panelGroup id="barcode" style="text-align: center;">
+				<p:separator />
+				<div>
+					<p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" />
+					<br />
+					<div>ou acesse:</div>
+					<div>#{pessoaMB.pessoa.qrCode}</div>
+				</div>
+				<p:separator />
 			</h:panelGroup>
+
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-12 ui-md-12">
+					<p:commandButton value="Imprimir" type="button" icon="fa fa-print"
+						styleClass="White">
+						<p:printer target="barcode" />
+					</p:commandButton>
+				</div>
+			</div>
 		</p:dialog>
 
 	</ui:define>
