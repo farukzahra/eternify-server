@@ -15,7 +15,7 @@ public class AuthorizationListener implements PhaseListener {
 
 	private static final long serialVersionUID = -8237087853801435858L;
 
-	public static final String[] PAGINAS_SEM_RESTRICAO = new String[] { "login.", "cadastro." };
+	public static final String[] PAGINAS_SEM_RESTRICAO = new String[] { "login.", "cadastro.", "findpessoa." };
 
 	@Override
 	public void beforePhase(PhaseEvent event) {
