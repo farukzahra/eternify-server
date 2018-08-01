@@ -17,10 +17,6 @@
 	box-sizing: border-box;
 }
 
-html {
-	height: 100%;
-}
-
 .recipe-card {
 	font-family: 'Open Sans', sans-serif;
 	background: #fff;
@@ -157,4 +153,29 @@ html {
 	background-position: 0 -84px;
 	width: 18px;
 	height: 18px;
+}
+
+@media ( max-width : 600px) {
+	.foto {
+		width: 300px;
+	}
+	.recipe-card article h2 {
+		font-size: 30px;
+	}
+	.recipe-card article h3 {
+		font-size: 23px;
+	}
+	.recipe-card article ul li span:nth-of-type(2) {
+		margin-left: 8px;
+		font-size: 16px;
+	}
+	.fa-2x {
+		font-size: 1em;
+	}
+	.citacao {
+		font-size: 13px !important;
+	}
+	.recipe-card article p {		
+		font-size: 16px;
+	}
 }
