@@ -1,6 +1,10 @@
+.foto {
+	width: 70%;
+}
+
 .citacao {
 	font-style: italic;
-    font-size: 26px !important;
+	font-size: 26px !important;
 }
 
 .fa {
@@ -16,7 +20,6 @@
 html {
 	height: 100%;
 }
-
 
 .recipe-card {
 	font-family: 'Open Sans', sans-serif;
@@ -122,8 +125,7 @@ html {
 .recipe-card .icon {
 	display: inline;
 	display: inline-block;
-	background-image:
-		url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/recipe-card-icons.svg);
+	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/recipe-card-icons.svg);
 	background-repeat: no-repeat;
 }
 
