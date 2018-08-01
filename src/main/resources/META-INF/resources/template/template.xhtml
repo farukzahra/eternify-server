@@ -45,6 +45,14 @@
 			<div id="layout-portlets-cover">
 
 				<h:form id="form">
+					<p:growl id="mensagens" showDetail="true" autoUpdate="true"
+						globalOnly="true" life="10000" escape="false" />
+					<p:ajaxStatus onstart="PF('loading').show();"
+						onsuccess="PF('loading').hide();" />
+					<p:dialog modal="true" widgetVar="loading" draggable="false"
+						closable="false" showHeader="false" resizable="false">
+						<p:graphicImage value="/images/loading.gif" />
+					</p:dialog>
 					<ui:insert name="content">
                         Template
                     </ui:insert>

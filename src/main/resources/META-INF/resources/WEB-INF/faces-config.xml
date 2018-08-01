@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+	
+	<lifecycle>
+		<phase-listener>com.fmz.eternify.utils.AuthorizationListener</phase-listener>
+	</lifecycle>
+
+	<component>
+		<component-type>org.primefaces.component.OlymposMenu</component-type>
+		<component-class>org.primefaces.olympos.component.menu.OlymposMenu</component-class>
+	</component>
+
+	<render-kit>
+		<renderer>
+			<component-family>org.primefaces.component</component-family>
+			<renderer-type>org.primefaces.component.OlymposMenuRenderer</renderer-type>
+			<renderer-class>org.primefaces.olympos.component.menu.OlymposMenuRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+
+</faces-config>

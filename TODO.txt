@@ -1,14 +1,2 @@
-Pessoa
-  facebook
-  instagram
-  twitter
-  youtube
-card.xhtml
-  Validação quando o campo é nulo não mostrar icone
-  implementar novos campos 
-AuthorizationListener
-  fazer
 Login e cadastro com o google
-  fazer
-Mensagens de retorno dos MB
   fazer

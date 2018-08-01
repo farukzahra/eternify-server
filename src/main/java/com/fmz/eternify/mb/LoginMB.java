@@ -1,5 +1,6 @@
 package com.fmz.eternify.mb;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.fmz.eternify.utils.JSFHelper;
 import lombok.Data;
 
 @Named
+@SessionScoped
 @Data
 public class LoginMB {
 
@@ -25,19 +27,20 @@ public class LoginMB {
 
 	public String doLogin() {
 		usuarioLogado = usuarioController.login(usuario);
+		JSFHelper.getSession().setAttribute("USUARIO_LOGADO", usuarioLogado);
 		if (usuarioLogado != null) {
 			JSFHelper.redirect("pessoa.jsf");
 			return "";
 		}else {
-			// TODO COLOCAR MSG de ERRO
+			JSFHelper.addError("Email/Senha inválidos", "");
 		}
 		return "";
 	}
 
 	public String doCadastro() {
 		try {
-			Usuario usuarioCadastro = usuarioController.cadastrar(usuario);
-			// TODO COLOCAR MSG DE EMAIL ENVIADO
+			String msg =  usuarioController.cadastrar(usuario);
+			JSFHelper.addError(msg, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,8 +49,8 @@ public class LoginMB {
 
 	public void doTrocarSenha() {
 		try {
-			// TODO COLOCAR MSG
 			String msg = usuarioController.trocarSenha(usuarioLogado, senhaAtual, novaSenha, novaSenhaConfirmacao);
+			JSFHelper.addError(msg, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

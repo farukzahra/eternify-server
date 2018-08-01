@@ -1,6 +1,8 @@
 package com.fmz.eternify.utils;
 
 import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.application.ProjectStage;
 import javax.faces.application.ViewHandler;
 import javax.faces.component.UIViewRoot;
@@ -11,7 +13,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fmz.eternify.model.Usuario;
+
 public class JSFHelper {
+
+	public static Usuario getUsuarioLogado() {
+		try {
+			Usuario usuario = (Usuario) JSFHelper.getSession().getAttribute("USUARIO_LOGADO");
+			return usuario;
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
+
+	public static void addInfo(String summary, String detail) {
+		addMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+	}
+
+	public static void addWarn(String summary, String detail) {
+		addMessage(FacesMessage.SEVERITY_WARN, summary, detail);
+	}
+
+	public static void addError(String summary, String detail) {
+		addMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+	}
+
+	public static void addFatal(String summary, String detail) {
+		addMessage(FacesMessage.SEVERITY_FATAL, summary, detail);
+	}
+
+	private static void addMessage(Severity severity, String summary, String detail) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, summary, detail));
+	}
 
 	public static HttpSession getSession() {
 		HttpSession httpSession = (HttpSession) getExternalContext().getSession(true);

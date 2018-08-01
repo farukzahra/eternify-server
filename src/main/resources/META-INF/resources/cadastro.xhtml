@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<f:facet name="first">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 	</f:facet>
 	<title>ETERNIFY</title>
@@ -30,10 +25,14 @@
 <h:body style="background-color: #232e5f;">
 
 	<h:form>
+		<p:ajaxStatus onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
+		<p:dialog modal="true" widgetVar="loading" draggable="false" closable="false" showHeader="false" resizable="false">
+			<p:graphicImage value="/images/loading.gif" />
+		</p:dialog>
 
 
-		<div class="Wid70 MarAuto">
-			<div class="Wid70 MarAuto WidAutoOnMobile TexAlCenter">
+		<div class="Wid50 MarAuto WidAutoOnMobile">
+			<div class="Wid50 MarAuto WidAutoOnMobile TexAlCenter">
 
 				<div class="Wid70 MarAuto WidAutoOnMobile">
 
@@ -52,12 +51,10 @@
 							<img src="images/eternify.png" class="logo" />
 						</div>
 						<div class="Container100">
-							<p:inputText placeholder="Email" style="padding:15px !important;"
-								value="#{loginMB.usuario.login}" />
-						</div>						
+							<p:inputText placeholder="Email" style="padding:15px !important;" value="#{loginMB.usuario.login}" />
+						</div>
 						<div class="Container100">
-							<p:commandButton action="#{loginMB.doCadastro}" value="Cadastrar"
-								styleClass="GreenButton White" icon="fa fa-clipboard Fs16"/>
+							<p:commandButton action="#{loginMB.doCadastro}" value="Cadastrar" styleClass="GreenButton White" icon="fa fa-clipboard Fs16" process="@form" />
 						</div>
 
 						<div class="EmptyBox10"></div>
@@ -67,8 +64,7 @@
 
 					<div class="EmptyBox20"></div>
 					<div class="Wid100 FontLatoRegular Fs12 TransparentWhite">
-						<i class="fa fa-copyright DispInlBlock"></i> ETERNIFY | 2018 |
-						v.0.0.1
+						<i class="fa fa-copyright DispInlBlock"></i> ETERNIFY | 2018 | v.0.0.1
 					</div>
 					<div class="EmptyBox30"></div>
 				</div>
@@ -82,15 +78,11 @@
 }
 </style>
 
-		<h:outputStylesheet name="css/core-layout.css"
-			library="olympos-layout" />
-		<h:outputStylesheet name="css/font-awesome.css"
-			library="olympos-layout" />
+		<h:outputStylesheet name="css/core-layout.css" library="olympos-layout" />
+		<h:outputStylesheet name="css/font-awesome.css" library="olympos-layout" />
 		<h:outputStylesheet name="css/animate.css" library="olympos-layout" />
-		<h:outputStylesheet name="css/olympos-layout.css"
-			library="olympos-layout" />
-		<h:outputStylesheet name="css/olympos-font.css"
-			library="olympos-layout" />
+		<h:outputStylesheet name="css/olympos-layout.css" library="olympos-layout" />
+		<h:outputStylesheet name="css/olympos-font.css" library="olympos-layout" />
 	</h:form>
 </h:body>
 

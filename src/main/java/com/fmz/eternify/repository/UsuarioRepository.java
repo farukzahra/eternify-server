@@ -11,5 +11,7 @@ import com.fmz.eternify.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	List<Usuario> findByLoginAndSenha(String login, String senha);
+	
+	List<Usuario> findByLogin(String login);
 
 }

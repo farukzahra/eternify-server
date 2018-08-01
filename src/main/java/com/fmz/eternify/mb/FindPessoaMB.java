@@ -3,11 +3,11 @@ package com.fmz.eternify.mb;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.annotation.RequestScope;
 
 import com.fmz.eternify.controller.PessoaController;
 import com.fmz.eternify.model.Pessoa;
@@ -15,7 +15,7 @@ import com.fmz.eternify.model.Pessoa;
 import lombok.Data;
 
 @Named
-@RequestScope
+@RequestScoped
 @Data
 public class FindPessoaMB {
 

@@ -30,18 +30,27 @@ public class UsuarioController {
 
 	@PostMapping("/login")
 	public Usuario login(@Valid @RequestBody Usuario usuario) {
-		List<Usuario> usuarios = usuarioRepository.findByLoginAndSenha(usuario.getLogin(),
+		List<Usuario> usuarios = usuarioRepository.findByLoginAndSenha(usuario.getLogin().toUpperCase(),
 				CryptMD5.encrypt(usuario.getSenha()));
 		return usuarios != null && !usuarios.isEmpty() ? usuarios.get(0) : null;
 	}
 
 	@PostMapping("/cadastrar")
-	public Usuario cadastrar(Usuario usuario) throws Exception {
+	public String cadastrar(Usuario usuario) throws Exception {
+		
+		usuario.setLogin(usuario.getLogin().toUpperCase());
+		
+		List<Usuario> findByLogin = usuarioRepository.findByLogin(usuario.getLogin());
+		if(findByLogin != null && !findByLogin.isEmpty()) {
+			return "Usuário já cadastrado.";
+		}
+		
 		String senha = GeradorSenha.gerarSenha();
 		usuario.setSenha(CryptMD5.encrypt(senha));
+		usuario.setLogin(usuario.getLogin().toUpperCase());
 		usuarioRepository.save(usuario);
 		emailController.sendMailUsuarioNovo(usuario.getLogin(), senha);
-		return usuario;
+		return "Senha enviada para o seu email.";
 	}
 
 	public String trocarSenha(Usuario usuarioLogado, String senhaAtual, String novaSenha, String novaSenhaConfirmacao)

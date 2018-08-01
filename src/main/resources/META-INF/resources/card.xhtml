@@ -1,8 +1,11 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+li {
+	margin: 5px;
+}
+</style>
 
 	<h:panelGroup style="text-align:center">
 
@@ -28,6 +31,19 @@
 					<li><span class="fa fa-2x fa-book"></span><span>#{p.religiao}</span></li>
 					<li><span class="fa fa-2x fa-building"></span><span>#{p.profissao}</span></li>
 				</ul>
+
+				<ul>
+					<li><span class="fa fa-2x fa-facebook-square"></span><span><p:link rendered="#{p.facebookUrl != ''}" value="#{p.facebookUrl}" title="#{p.facebookUrl}" href="#{p.facebook}"
+								target="_blank" /> </span></li>
+					<li><span class="fa fa-2x fa-twitter-square"></span><span><p:link rendered="#{p.twitterUrl != ''}" value="#{p.twitterUrl}" title="#{p.twitterUrl}" href="#{p.twitter}" target="_blank" />
+					</span></li>
+					<li><span class="fa fa-2x fa-instagram"></span><span><p:link rendered="#{p.instagramUrl != ''}" value="#{p.instagramUrl}" title="#{p.instagramUrl}" href="#{p.instagram}"
+								target="_blank" /> </span></li>
+					<li><span class="fa fa-2x fa-youtube-square"></span><span><p:link rendered="#{p.youtubeUrl != ''}" value="youtube/watch" title="youtube/watch" href="#{p.youtube}" target="_blank" />
+					</span></li>
+				</ul>
+
+
 
 				<p class="citacao">"#{p.citacao}"</p>
 

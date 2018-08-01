@@ -14,6 +14,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,17 +40,29 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+
 	@NotBlank
 	private String nome;
 
 	@Column(length = 100000)
 	private String foto;
-	
+
 	private String religiao;
-	
+
 	private String profissao;
-	
+
 	private String citacao;
+	
+	private String facebook;
+	
+	private String instagram;
+	
+	private String twitter;
+	
+	private String youtube;
 
 	@NotBlank
 	@Column(length = 100000)
@@ -72,32 +86,21 @@ public class Pessoa implements Serializable {
 	@LastModifiedDate
 	private Date updatedAt;
 
-	public Pessoa(@NotBlank String nome, @NotBlank String descricao, String foto, Integer filhos, String religiao, String profissao, String citacao) {
-		super();
-		this.nome = nome;
-		this.descricao = descricao;
-		this.foto = foto;
-		this.filhos = filhos;
-		this.religiao = religiao;
-		this.profissao = profissao;		
-	}
-	
 	public String getQrCode() {
-		//return "http://localhost:8080/findpessoa.jsf?pessoa="+id;
-		return "http://eternify.com.br/findpessoa.jsf?pessoa="+id;
+		return "http://eternify.com.br/findpessoa.jsf?pessoa=" + id;
 	}
 
 	public String getDataNascimentoStr() {
 		return Utils.dateToString(this.dataNascimento, "dd/MM/yyyy");
 
 	}
-	
+
 	public String getDescricaoFormatado() {
 		String retorno = "";
-		if(descricao != null) {
+		if (descricao != null) {
 			String[] split = descricao.split("\\r?\\n");
 			for (String string : split) {
-				retorno += "<p>"+string+"</p>";
+				retorno += "<p>" + string + "</p>";
 			}
 		}
 		return retorno;
@@ -107,6 +110,43 @@ public class Pessoa implements Serializable {
 		return Utils.dateToString(this.dataFalecimento, "dd/MM/yyyy");
 
 	}
+
+	public String getFacebookUrl() {
+		String url = Utils.splitURL(facebook);
+		if(url != null) {
+			return "facebook/"+url;
+		}else {
+			return "";
+		}
+	}
+	
+	public String getInstagramUrl() {
+		String url = Utils.splitURL(instagram);
+		if(url != null) {
+			return "instagram/"+url;
+		}else {
+			return "";
+		}
+	}
+	
+	public String getTwitterUrl() {
+		String url = Utils.splitURL(twitter);
+		if(url != null) {
+			return "twitter/"+url;
+		}else {
+			return "";
+		}
+	}
+	
+	public String getYoutubeUrl() {
+		String url = Utils.splitURL(youtube);
+		if(url != null) {
+			return "youtube/"+url;
+		}else {
+			return "";
+		}
+	}
+	
 
 	public String getIdade() {
 		Instant instant = dataNascimento.toInstant();
@@ -119,16 +159,16 @@ public class Pessoa implements Serializable {
 
 		if ((dataNascimento != null) && (dataFalecimento != null)) {
 			int anos = Period.between(lddataNascimento, lddataFalecimento).getYears();
-			if(anos <= 0) {
+			if (anos <= 0) {
 				int meses = Period.between(lddataNascimento, lddataFalecimento).getMonths();
-				if(meses > 1) {
+				if (meses > 1) {
 					return meses + " meses";
-				}else {
+				} else {
 					return meses + " mês";
 				}
-			}else if(anos == 1) {
+			} else if (anos == 1) {
 				return anos + " ano";
-			}else {
+			} else {
 				return anos + " anos";
 			}
 		} else {

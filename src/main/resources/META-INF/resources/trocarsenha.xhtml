@@ -1,7 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="template/template.xhtml">
 
 	<ui:define name="content">
@@ -18,33 +15,24 @@
 							<div class="ui-g-12 ui-md-3">
 								<div class="ui-g-12 ui-md-12">
 									<div class="ui-inputgroup">
-										<span class="ui-inputgroup-addon"><i
-											class="fa  fa-unlock"></i></span>
-										<p:password id="senhaAtual" value="#{loginMB.senhaAtual}"
-											required="true" feedback="false" placeholder="Senha Atual" />
-									</div>
-								</div>
-								<div class="ui-g-12 ui-md-12">
-									<div class="ui-inputgroup">
-										<span class="ui-inputgroup-addon"><i
-											class="fa fa-lock"></i></span>
-										<p:password id="novaSenha" value="#{loginMB.novaSenha}"
-											required="true" feedback="false" placeholder="Nova Senha" />
+										<span class="ui-inputgroup-addon"><i class="fa  fa-unlock"></i></span>
+										<p:password id="senhaAtual" value="#{loginMB.senhaAtual}" required="true" feedback="false" placeholder="Senha Atual" />
 									</div>
 								</div>
 								<div class="ui-g-12 ui-md-12">
 									<div class="ui-inputgroup">
 										<span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
-										<p:password id="novaSenhaConfirmacao"
-											value="#{loginMB.novaSenhaConfirmacao}" required="true"
-											feedback="false" placeholder="Confirmar Nova Senha" />
+										<p:password id="novaSenha" value="#{loginMB.novaSenha}" required="true" feedback="false" placeholder="Nova Senha" />
+									</div>
+								</div>
+								<div class="ui-g-12 ui-md-12">
+									<div class="ui-inputgroup">
+										<span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+										<p:password id="novaSenhaConfirmacao" value="#{loginMB.novaSenhaConfirmacao}" required="true" feedback="false" placeholder="Confirmar Nova Senha" />
 									</div>
 								</div>
 								<div class="ui-g-12 ui-md-6">
-									<p:commandButton id="submit" value="Trocar"
-										process="pnDados"
-										actionListener="#{loginMB.doTrocarSenha}" update="pnDados"
-										icon="fa fa-save" styleClass="White" />
+									<p:commandButton id="submit" value="Trocar" process="pnDados" actionListener="#{loginMB.doTrocarSenha}" update="pnDados" icon="fa fa-save" styleClass="White" />
 								</div>
 							</div>
 						</div>
