@@ -1,0 +1,12 @@
+.ui-inputgroup .ui-inputgroup-addon, .ui-inputgroup .ui-inputgroup-addon-checkbox {
+    border-color: #d2d6de;
+}
+
+.ui-inputgroup .ui-inputgroup-addon {
+    padding: 7px !important;
+}
+
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
+    width: 100%;
+    height: 32px;
+}
