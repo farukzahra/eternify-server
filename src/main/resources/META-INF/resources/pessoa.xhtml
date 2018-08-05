@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" template="template/template.xhtml">
 
 	<ui:define name="content">
 
@@ -139,7 +139,10 @@
 			<h:panelGroup id="barcode" style="text-align: center;">
 				<p:separator />
 				<div>
-					<p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" width="500"/>
+					<!-- <p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" width="500"/>  -->
+					<pe:qrCode id="qrCodeElem" renderMethod="canvas" renderMode="2" text="#{pessoaMB.pessoa.qrCode}" label="eternify.com.br"
+						size="500" fillColor="#000000" fontName="Ubuntu" fontColor="#5271FF" ecLevel="H" radius="0.5" />
+					<img id="printImage"/>
 					<br />
 					<div>ou acesse:</div>
 					<div>#{pessoaMB.pessoa.qrCode}</div>
@@ -149,7 +152,7 @@
 
 			<div class="ui-g ui-fluid">
 				<div class="ui-g-12 ui-md-12">
-					<p:commandButton value="Imprimir" type="button" icon="fa fa-print" styleClass="White">
+					<p:commandButton value="Imprimir" type="button" icon="fa fa-print" styleClass="White" onclick="$('#printImage').attr('src',$('#form\\:qrCodeElem').children()[0].toDataURL());$('#form\\:qrCodeElem > canvas').hide();">
 						<p:printer target="barcode" />
 					</p:commandButton>
 				</div>
