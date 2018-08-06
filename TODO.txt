@@ -2,4 +2,3 @@ Login e cadastro com o google
   fazer
 Esconder pass
   https://stackoverflow.com/questions/37404703/spring-boot-how-to-hide-passwords-in-properties-file
-Site corporativo
