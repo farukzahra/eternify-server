@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -55,14 +56,17 @@ public class Pessoa implements Serializable {
 	private String profissao;
 
 	private String citacao;
-	
+
 	private String facebook;
-	
+
 	private String instagram;
-	
+
 	private String twitter;
-	
+
 	private String youtube;
+
+	@Transient
+	private String dataHora;
 
 	@NotBlank
 	@Column(length = 100000)
@@ -113,40 +117,39 @@ public class Pessoa implements Serializable {
 
 	public String getFacebookUrl() {
 		String url = Utils.splitURL(facebook);
-		if(url != null) {
-			return "facebook/"+url;
-		}else {
+		if (url != null) {
+			return "facebook/" + url;
+		} else {
 			return "";
 		}
 	}
-	
+
 	public String getInstagramUrl() {
 		String url = Utils.splitURL(instagram);
-		if(url != null) {
-			return "instagram/"+url;
-		}else {
+		if (url != null) {
+			return "instagram/" + url;
+		} else {
 			return "";
 		}
 	}
-	
+
 	public String getTwitterUrl() {
 		String url = Utils.splitURL(twitter);
-		if(url != null) {
-			return "twitter/"+url;
-		}else {
+		if (url != null) {
+			return "twitter/" + url;
+		} else {
 			return "";
 		}
 	}
-	
+
 	public String getYoutubeUrl() {
 		String url = Utils.splitURL(youtube);
-		if(url != null) {
-			return "youtube/"+url;
-		}else {
+		if (url != null) {
+			return "youtube/" + url;
+		} else {
 			return "";
 		}
 	}
-	
 
 	public String getIdade() {
 		Instant instant = dataNascimento.toInstant();
@@ -176,4 +179,6 @@ public class Pessoa implements Serializable {
 		}
 
 	}
+	
+	
 }

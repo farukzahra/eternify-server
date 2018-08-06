@@ -1,5 +1,8 @@
 package com.fmz.eternify.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +29,14 @@ public class PessoaController {
 	public void addPessoa(@Valid @RequestBody Pessoa pessoa) {
 		pessoaRepository.save(pessoa);
 	}
-	
+
 	@GetMapping("/get")
 	public Pessoa findPessoa(long id) {
-		return pessoaRepository.findById(id).get();
+		Pessoa pessoa = pessoaRepository.findById(id).get();
+		if (pessoa != null) {
+			pessoa.setDataHora(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime()));
+		}
+		return pessoa;
 	}
 
 }
