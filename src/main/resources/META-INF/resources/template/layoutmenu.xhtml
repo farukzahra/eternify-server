@@ -1,15 +1,11 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:po="http://primefaces.org/olympos">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:po="http://primefaces.org/olympos">
 
 	<h:form id="menuform">
 		<po:menu widgetVar="OlymposMenu">
 			<p:submenu id="om_dashboards" label="MENU">
-				<p:menuitem value="Criar Memória" icon="icon-love55"
-					url="pessoa.jsf" />
+				<p:menuitem value="Criar Memória" icon="icon-love55" url="pessoa.jsf" />
+				<p:menuitem value="Listar Memórias" icon="fa fa-th-list" url="listpessoa.jsf" />
 				<p:menuitem value="Trocar Senha" icon="icon-lock70" url="trocarsenha.jsf" />
 				<p:menuitem value="Sair" icon="fa fa-power-off" url="login.jsf" />
 			</p:submenu>
