@@ -18,6 +18,14 @@
 	margin-right: auto;
 	width: 100%;
 }
+.AquaButton .ui-button-text {
+  background-color: #3b5ef9;
+  border-color: #087298;
+}
+.RedButton .ui-button-text {
+  background-color: #f73b3b;
+  border-color: #bd0a39;
+}
 </style>
 
 </h:head>
@@ -27,10 +35,10 @@
 	<h:form>
 
 
-		<div class="Wid50 MarAuto WidAutoOnMobile">
-			<div class="Wid50 MarAuto WidAutoOnMobile TexAlCenter">
+	   <div class="Wid70 MarAuto">
+            <div class="Wid70 MarAuto WidAutoOnMobile TexAlCenter">
 
-				<div class="Wid70 MarAuto WidAutoOnMobile">
+                <div class="Wid50 MarAuto WidAutoOnMobile">
 
 
 					<div class="EmptyBox30"></div>
@@ -54,10 +62,10 @@
 						</div>
 						<div class="EmptyBox20"></div>
 						<div class="Container100">
-							<p:commandButton value="Logar" styleClass="GreenButton White" icon="fa fa-lock Fs16" action="#{loginMB.doLogin}" process="@form" />
+							<p:commandButton value="Logar" styleClass="AquaButton White" icon="fa fa-sign-in Fs16" action="#{loginMB.doLogin}" process="@form" />
 						</div>
 						<div class="Container100">
-							<p:commandButton value="Criar uma Conta" styleClass="OrangeButton White" icon="fa fa-clipboard Fs16" action="cadastro.jsf" />
+							<p:commandButton value="Criar uma Conta" styleClass="AquaButton White" icon="fa fa-clipboard Fs16" action="cadastro.jsf" />
 						</div>
 
 						<div class="Container100 Responsive100">
