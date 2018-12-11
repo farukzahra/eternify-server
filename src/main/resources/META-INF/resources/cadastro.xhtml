@@ -2,21 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<f:facet name="first">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-	</f:facet>
-	<title>ETERNIFY</title>
-	<ui:insert name="head" />
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>ETERNIFY</title>
+    <ui:insert name="head" />
 
-	<style>
+    <style>
 .logo {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 </style>
 
@@ -24,66 +24,112 @@
 
 <h:body style="background-color: #232e5f;">
 
-	<h:form>
-		<p:ajaxStatus onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
-		<p:dialog modal="true" widgetVar="loading" draggable="false" closable="false" showHeader="false" resizable="false">
-			<p:graphicImage value="/images/loading.gif" />
-		</p:dialog>
+    <h:form id="form">
+        <p:ajaxStatus onstart="PF('loading').show();" onsuccess="PF('loading').hide();" />
+        <p:dialog modal="true" widgetVar="loading" draggable="false" closable="false" showHeader="false" resizable="false">
+            <p:graphicImage value="/images/loading.gif" />
+        </p:dialog>
+
+        <div class="Container100">
+            <div class="Card">
+
+                <h1 class="CardBigTopic">REGISTRO ETERNIFY</h1>
+                <div class="SeparatorFull"></div>
+
+                <h:panelGroup id="pnDados">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <p:inputText id="nome" value="#{loginMB.usuario.nome}" placeholder="Nome" required="true" />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-envelope"></i></span>
+                                <p:inputText id="email" value="#{loginMB.usuario.email}" placeholder="E-mail" required="true" />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-id-card"></i></span>
+                                <p:inputText id="cpfCnpj" value="#{loginMB.usuario.cpfCnpj}" placeholder="Cpf/Cnpj" required="true" />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:inputText id="cep" value="#{loginMB.usuario.cep}" placeholder="Cep" required="true" onkeyup="">
+                                    <p:ajax event="keyup" update="pnDados" listener="#{loginMB.carregarEndereco}" process="@this" />
+                                </p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:inputText id="rua" value="#{loginMB.usuario.rua}" placeholder="Rua" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-2">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:inputText id="numero" value="#{loginMB.usuario.numero}" placeholder="Numero" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:inputText id="bairro" value="#{loginMB.usuario.bairro}" placeholder="Bairro" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:inputText id="cidade" value="#{loginMB.usuario.cidade}" placeholder="Cidade" required="true" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-3">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                                <p:selectOneMenu id="estado" value="#{loginMB.usuario.estado}" required="true">
+                                    <f:selectItem itemValue="#{null}" itemLabel="Estado" />
+                                    <f:selectItems value="#{loginMB.listUF}" var="uf" itemValue="#{uf}" itemLabel="#{uf.nome}" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
 
 
-		<div class="Wid50 MarAuto WidAutoOnMobile">
-			<div class="Wid50 MarAuto WidAutoOnMobile TexAlCenter">
-
-				<div class="Wid70 MarAuto WidAutoOnMobile">
 
 
-					<div class="EmptyBox30"></div>
-					<div class="Container50 Responsive50"></div>
-					<div class="Container50 Responsive50"></div>
-					<div class="EmptyBox10 ShowOnMobile"></div>
+                    </div>
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-2">
+                            <p:commandButton action="#{loginMB.doCadastro}" value="Cadastrar" styleClass="White" icon="fa fa-clipboard Fs16" process="pnDados" update="pnDados" />
+                        </div>
+                    </div>
 
-					<div class="EmptyBox100 ShowOnDesktop"></div>
-					<div class="EmptyBox20 ShowOnMobile"></div>
+                </h:panelGroup>
 
-					<div class="EmptyBox30"></div>
-					<div class="Card ui-fluid ShadowEffect">
-						<div class="Container100">
-							<img src="images/eternify.png" class="logo" />
-						</div>
-						<div class="Container100">
-							<p:inputText placeholder="Email" style="padding:15px !important;" value="#{loginMB.usuario.login}" />
-						</div>
-						<div class="Container100">
-							<p:commandButton action="#{loginMB.doCadastro}" value="Cadastrar" styleClass="GreenButton White" icon="fa fa-clipboard Fs16" process="@form" />
-						</div>
 
-						<div class="EmptyBox10"></div>
-						<div class="Separator"></div>
-						<div class="EmptyBox10"></div>
-					</div>
 
-					<div class="EmptyBox20"></div>
-					<div class="Wid100 FontLatoRegular Fs12 TransparentWhite">
-						<i class="fa fa-copyright DispInlBlock"></i> ETERNIFY | 2018 | v.0.0.1
-					</div>
-					<div class="EmptyBox30"></div>
-				</div>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<style>
-.ui-button-text, .ui-button-text-only .ui-button-text {
-	padding: 15px !important;
-	transition: none !important;
-}
-</style>
 
-		<h:outputStylesheet name="css/core-layout.css" library="olympos-layout" />
-		<h:outputStylesheet name="css/font-awesome.css" library="olympos-layout" />
-		<h:outputStylesheet name="css/animate.css" library="olympos-layout" />
-		<h:outputStylesheet name="css/olympos-layout.css" library="olympos-layout" />
-		<h:outputStylesheet name="css/olympos-font.css" library="olympos-layout" />
-	</h:form>
+
+
+        <h:outputStylesheet name="css/eternify.css" />
+        <h:outputStylesheet name="css/core-layout.css" library="olympos-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="olympos-layout" />
+        <h:outputStylesheet name="css/animate.css" library="olympos-layout" />
+        <h:outputStylesheet name="css/olympos-layout.css" library="olympos-layout" />
+        <h:outputStylesheet name="css/olympos-font.css" library="olympos-layout" />
+    </h:form>
 </h:body>
 
 </html>
