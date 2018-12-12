@@ -72,6 +72,7 @@ public class LoginMB {
     public String doCadastro() {
         try {
         	usuario.setLogin(usuario.getEmail());
+        	usuario.setCreditos(0);
         	usuarioController.cadastrarIugu(usuario);
             String msg = usuarioController.cadastrar(usuario);            
             JSFHelper.addInfo(msg, "");

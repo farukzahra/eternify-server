@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fmz.eternify.controller.ConfigController;
 import com.fmz.eternify.controller.FaturaController;
 import com.fmz.eternify.iugu.responses.InvoiceResponse;
 import com.fmz.eternify.iugu.services.Iugu;
@@ -28,20 +29,21 @@ public class FaturaMB {
 
 	@Autowired
 	private FaturaController faturaController;
+	
+	@Autowired
+	private ConfigController configController;
+
 
 	private Fatura fatura = new Fatura();
 
 	private List<Fatura> faturas = new ArrayList<>();
-	
-	// 10 reais
-	private static final int VALOR_UNITARIO = 1000;
 
 	public void addFatura() {
 		Usuario usuarioLogado = JSFHelper.getUsuarioLogado();
-		InvoiceResponse invoiceResponse = Iugu.criarFatura(usuarioLogado, fatura.getCreditos(), VALOR_UNITARIO);
+		InvoiceResponse invoiceResponse = Iugu.criarFatura(usuarioLogado, fatura.getCreditos(), configController.getValorTransacao().getValorAsInteger());
 		System.out.println(invoiceResponse);
 		fatura.setIdIugu(invoiceResponse.getId());
-		fatura.setValorUnitario(new BigDecimal(VALOR_UNITARIO / 100));
+		fatura.setValorUnitario(new BigDecimal(configController.getValorTransacao().getValorAsInteger() / 100));
 		fatura.setValorTotal(fatura.getValorUnitario().multiply(new BigDecimal(fatura.getCreditos())));
 		fatura.setUsuario(usuarioLogado);
 		fatura.setStatus("pending");

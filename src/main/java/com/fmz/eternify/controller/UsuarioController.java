@@ -54,7 +54,7 @@ public class UsuarioController {
 		usuario.setSenha(CryptMD5.encrypt(senha));
 		usuario.setLogin(usuario.getLogin().toUpperCase());
 		usuarioRepository.save(usuario);
-		emailController.sendMailUsuarioNovo(usuario.getLogin(), senha);
+		emailController.sendMailUsuarioNovo(usuario, senha);
 		return "Senha enviada para o seu email.";
 	}
 
