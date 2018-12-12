@@ -1,27 +1,39 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<center>
-	<table style="width: 600px; padding-right: 30px; padding-left: 30px;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" dir="ltr" lang="pt">
+	<tbody>
 		<tr>
-			<td style="text-align: center;"><a href="http://eternify.com.br/" target="_blank"><img src="http://eternify.com.br/images/eternify.png" /></a></td>
+			<td valign="top" width="50%"></td>
+			<td valign="top">
+				<table style="width: 600px; padding-right: 30px; padding-left: 30px; border: 1px solid #e3e3e3;">
+
+
+					<tr>
+						<td width="24">&nbsp;</td>
+						<td style="text-align: center;"><a href="http://eternify.com.br/" target="_blank"><img src="http://eternify.com.br/images/eternify.png" /></a></td>
+						<td width="24">&nbsp;</td>
+
+					</tr>
+
+					<tr>
+						<td width="24">&nbsp;</td>
+						<td>
+							<p style="font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 14px; font-weight: light; text-align: left; color: #58585b; margin-top: 25px;">
+
+								<strong>Bem-vindo #nome</strong>!<br /> <br /> <br /> Parabéns por escolher o Eternify. <br /> <br /> Login: #usuario<br /> Senha: #senha<br /> <br /> <a
+									href="http://eternify.com.br/login.jsf" class="button" target="_blank"
+									style="margin: 0; padding: 0; font-size: 100%; font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.65; color: white; text-decoration: none; display: inline-block; background: #5270FF; border: solid #5270FF; border-width: 10px 20px 8px; font-weight: bold; border-radius: 4px;">Clique
+									aqui para acessar</a><br /> <br /> Qualquer dúvida, não hesite em nos enviar um email: <strong>farukz@gmail.com</strong><br /> <br /> <br /> Boa experiência!<br /> <strong>Equipe
+									Eternify.<br/><br/></strong>
+							</p>
+						</td>
+						<td width="24">&nbsp;</td>
+					</tr>
+				</table>
+			<td valign="top" width="50%"></td>
 		</tr>
+	</tbody>
+</table>
 
-		<tr>
-			<td>
-				<p style="font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: light; text-align: left; color: #58585b;margin-top: 25px;">
-
-					<strong>Bem-vindo #nome</strong>!<br /> <br /> <br /> Parabéns por escolher o Eternify.
-					
-					<br /> <br /> 
-					Login: #usuario<br /> Senha: #senha<br /> <br /> <a
-						href="http://eternify.com.br/login.jsf" class="button" target="_blank"
-						style="margin: 0; padding: 0; font-size: 100%; font-family: 'Avenir Next', 'Helvetica Neue', 'Helvetica', 'Helvetica', 'Arial', 'sans-serif'; line-height: 1.65; color: white; text-decoration: none; display: inline-block; background: #5270FF; border: solid #5270FF; border-width: 10px 20px 8px; font-weight: bold; border-radius: 4px;">Clique
-						aqui para acessar</a><br /> <br /> Qualquer dúvida, não hesite em nos enviar um email: <strong>farukz@gmail.com</strong><br /> <br /> <br />
-					Boa experiência!<br /> <strong>Equipe Eternify.</strong>
-				</p>
-			</td>
-		</tr>
-
-</center>
 </html>
