@@ -28,11 +28,11 @@ public class AuthorizationListener implements PhaseListener {
         if (currentPage.contains("xhtml")) {
             currentPage = currentPage.replaceAll("xhtml", "jsf");
         }
-//		if (!this.isPaginaSemRestricao(currentPage)) {
-//			if (usuarioLogado == null) {
-//				JSFHelper.redirect("login.jsf");
-//			}
-//		}
+		if (!this.isPaginaSemRestricao(currentPage)) {
+			if (usuarioLogado == null) {
+				JSFHelper.redirect("login.jsf");
+			}
+		}
         response.setHeader("Expires", "-1");
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidade, proxy-revalidade, private, post-check=0, pre-check=0");
         response.setHeader("Pragma", "no-cache");

@@ -72,7 +72,7 @@ public class Pessoa implements Serializable {
 	@Column(length = 100000)
 	private String descricao;
 
-	private Integer filhos = 0;
+	private Integer filhos;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;

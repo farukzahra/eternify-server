@@ -35,11 +35,16 @@ public class Usuario implements Serializable {
     private String cidade;
     private String estado;
     private Integer numero;
+    private String idIugu;
+    
+    private Integer creditos;
 
     public Usuario(@NotBlank String login, @NotBlank String senha) {
         super();
         this.login = login;
         this.senha = senha;
     }
+
+	
 
 }

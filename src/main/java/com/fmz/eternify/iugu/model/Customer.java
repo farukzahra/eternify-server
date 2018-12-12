@@ -22,9 +22,10 @@ public class Customer implements Serializable {
         this.zipCode = zipCode;
         this.number = number;
         this.street = street;
-        district = distrinct;
+        this.district = distrinct;
         this.city = city;
         this.state = state;
+        this.cpfCnpj = cpfCnpj;
     }
 
     private String email;

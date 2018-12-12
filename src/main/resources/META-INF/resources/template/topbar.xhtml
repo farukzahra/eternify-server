@@ -14,10 +14,15 @@
 					class="topbar-link Animated03"><h:graphicImage name="images/menu-btn-icon.svg" id="menu-btn-icon" library="olympos-layout" /></a>
 
 				<div id="search-bar">
-					<div class="FontLatoBlack White Opac80 Fleft DispBlock" style="margin: 1.4rem 2.1rem 0px 0px; font-size: 1.5rem;" id="bemvindo">
-						Bem-Vindo(a),
-						<h:outputText value="#{loginMB.usuarioLogado.login}" />
-					</div>
+					<h:panelGroup id="creditosBar">
+						<div class="FontLatoBlack White Fleft DispBlock" style="margin: 1.4rem 2.1rem 0px 0px; font-size: 1.5rem;" id="bemvindo">
+							| Bem-Vindo(a),
+							<h:outputText value="#{loginMB.usuarioLogado.login}" />
+							|
+							<h:outputText value="#{loginMB.usuarioLogado.creditos}" />
+							créditos restantes |
+						</div>
+					</h:panelGroup>
 				</div>
 
 			</div>

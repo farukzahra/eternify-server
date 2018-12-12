@@ -37,7 +37,7 @@
 						<div class="ui-g-12 ui-md-1">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-child"></i></span>
-								<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}" placeholder="Filhos" required="false" />
+								<p:inputText id="filhos" value="#{pessoaMB.pessoa.filhos}" placeholder="Filhos" required="false" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
 							</div>
 						</div>
 
@@ -55,28 +55,28 @@
 							</div>
 						</div>
 
-						<div class="ui-g-12 ui-md-3">
+						<div class="ui-g-12 ui-md-4">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-facebook-square"></i></span>
 								<p:inputText id="facebook" value="#{pessoaMB.pessoa.facebook}" placeholder="Facebook" required="false" />
 							</div>
 						</div>
 
-						<div class="ui-g-12 ui-md-3">
+						<div class="ui-g-12 ui-md-4">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-twitter-square"></i></span>
 								<p:inputText id="twitter" value="#{pessoaMB.pessoa.twitter}" placeholder="Twitter" required="false" />
 							</div>
 						</div>
 
-						<div class="ui-g-12 ui-md-3">
+						<div class="ui-g-12 ui-md-4">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-instagram"></i></span>
 								<p:inputText id="instagram" value="#{pessoaMB.pessoa.instagram}" placeholder="Instagram" required="false" />
 							</div>
 						</div>
 
-						<div class="ui-g-12 ui-md-3">
+						<div class="ui-g-12 ui-md-4">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-youtube-square"></i></span>
 								<p:inputText id="youtube" value="#{pessoaMB.pessoa.youtube}" placeholder="Youtube" required="false" />
@@ -104,7 +104,7 @@
 						</div>
 
 						<div class="ui-g-12 ui-md-2">
-							<p:commandButton id="submit" value="Salvar" process="@this,pnDados" actionListener="#{pessoaMB.addPessoa}" update="dtDados,pnDados" icon="fa fa-save" styleClass="White" />
+							<p:commandButton id="submit" value="Salvar" process="@this,pnDados" actionListener="#{pessoaMB.addPessoa}" update="dtDados,pnDados,creditosBar" icon="fa fa-save" styleClass="White" />
 						</div>
 
 						<div class="ui-g-12 ui-md-2">
@@ -140,10 +140,9 @@
 				<p:separator />
 				<div>
 					<!-- <p:barcode value="#{pessoaMB.pessoa.qrCode}" type="qr" width="500"/>  -->
-					<pe:qrCode id="qrCodeElem" renderMethod="canvas" renderMode="2" text="#{pessoaMB.pessoa.qrCode}" label="eternify.com.br"
-						size="500" fillColor="#000000" fontName="Ubuntu" fontColor="#5271FF" ecLevel="H" radius="0.5" />
-					<img id="printImage"/>
-					<br />
+					<pe:qrCode id="qrCodeElem" renderMethod="canvas" renderMode="2" text="#{pessoaMB.pessoa.qrCode}" label="eternify.com.br" size="500" fillColor="#000000" fontName="Ubuntu" fontColor="#5271FF"
+						ecLevel="H" radius="0.5" />
+					<img id="printImage" /> <br />
 					<div>ou acesse:</div>
 					<div>#{pessoaMB.pessoa.qrCode}</div>
 				</div>
@@ -152,7 +151,8 @@
 
 			<div class="ui-g ui-fluid">
 				<div class="ui-g-12 ui-md-12">
-					<p:commandButton value="Imprimir" type="button" icon="fa fa-print" styleClass="White" onclick="$('#printImage').attr('src',$('#form\\:qrCodeElem').children()[0].toDataURL());$('#form\\:qrCodeElem > canvas').hide();">
+					<p:commandButton value="Imprimir" type="button" icon="fa fa-print" styleClass="White"
+						onclick="$('#printImage').attr('src',$('#form\\:qrCodeElem').children()[0].toDataURL());$('#form\\:qrCodeElem > canvas').hide();">
 						<p:printer target="barcode" />
 					</p:commandButton>
 				</div>

@@ -53,14 +53,14 @@
                         <div class="ui-g-12 ui-md-4">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-id-card"></i></span>
-                                <p:inputText id="cpfCnpj" value="#{loginMB.usuario.cpfCnpj}" placeholder="Cpf/Cnpj" required="true" />
+                                <p:inputText id="cpfCnpj" value="#{loginMB.usuario.cpfCnpj}" placeholder="Cpf/Cnpj" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
                             </div>
                         </div>
                         <div class="ui-g-12 ui-md-3">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
                                 <p:inputText id="cep" value="#{loginMB.usuario.cep}" placeholder="Cep" required="true" onkeyup="">
-                                    <p:ajax event="keyup" update="pnDados" listener="#{loginMB.carregarEndereco}" process="@this" />
+                                    <p:ajax event="keyup" update="rua,bairro,cidade,estado" listener="#{loginMB.carregarEndereco}" process="@this" delay="2000"/>
                                 </p:inputText>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="ui-g-12 ui-md-6">
                             <div class="ui-inputgroup">
                                 <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
-                                <p:inputText id="rua" value="#{loginMB.usuario.rua}" placeholder="Rua" required="true" />
+                                <p:inputText id="rua" value="#{loginMB.usuario.rua}" placeholder="Rua" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
                             </div>
                         </div>
 

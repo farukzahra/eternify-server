@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fmz.eternify.controller.FaturaController;
 import com.fmz.eternify.controller.UsuarioController;
 import com.fmz.eternify.model.Endereco;
 import com.fmz.eternify.model.Usuario;
@@ -23,6 +24,9 @@ public class LoginMB {
 
     @Autowired
     private UsuarioController usuarioController;
+    
+    @Autowired
+    private FaturaController faturaController;
 
     private Usuario usuario = new Usuario();
 
@@ -34,6 +38,7 @@ public class LoginMB {
         usuarioLogado = usuarioController.login(usuario);
         JSFHelper.getSession().setAttribute("USUARIO_LOGADO", usuarioLogado);
         if (usuarioLogado != null) {
+        	faturaController.atualizarFaturas(usuarioLogado);
             JSFHelper.redirect("pessoa.jsf");
             return "";
         } else {
@@ -66,8 +71,10 @@ public class LoginMB {
 
     public String doCadastro() {
         try {
-            String msg = usuarioController.cadastrar(usuario);
-            JSFHelper.addError(msg, "");
+        	usuario.setLogin(usuario.getEmail());
+        	usuarioController.cadastrarIugu(usuario);
+            String msg = usuarioController.cadastrar(usuario);            
+            JSFHelper.addInfo(msg, "");
         } catch (Exception e) {
             e.printStackTrace();
         }
