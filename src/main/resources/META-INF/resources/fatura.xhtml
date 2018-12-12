@@ -7,6 +7,12 @@
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'></link>
 		<link rel="stylesheet" href="css/fatura.css"></link>
 
+		<style>
+.ui-datatable table tbody tr td {
+	text-align: center;
+}
+</style>
+
 		<div class="Container100">
 			<div class="Card">
 
@@ -18,12 +24,14 @@
 						<div class="ui-g-12 ui-md-2">
 							<div class="ui-inputgroup">
 								<span class="ui-inputgroup-addon"><i class="fa fa-money"></i></span>
-								<p:inputText id="creditos" value="#{faturaMB.fatura.creditos}" placeholder="Quantidade de créditos" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+								<p:inputText id="creditos" value="#{faturaMB.fatura.creditos}" placeholder="Quantidade de créditos" required="true" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
 							</div>
 						</div>
 
 						<div class="ui-g-12 ui-md-2">
-							<p:commandButton id="submit" value="Comprar créditos" process="@this,pnDados" actionListener="#{faturaMB.addFatura}" update="dtDados,pnDados" icon="fa fa-money" styleClass="White GreenButton" />
+							<p:commandButton id="submit" value="Comprar créditos" process="@this,pnDados" actionListener="#{faturaMB.addFatura}" update="dtDados,pnDados" icon="fa fa-money" styleClass="White GreenButton">
+								<p:confirm header="Confirmação" message="Ao aceitar a compra de créditos, uma fatura no IUGU será gerada e enviada." icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
 						</div>
 
 					</div>
@@ -33,27 +41,38 @@
 
 				<p:dataTable var="p" value="#{faturaMB.faturas}" rows="10" paginator="true" id="dtDados"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+					<f:facet name="header">
+					 	Minhas Faturas
+					 </f:facet>
 					<p:column filterBy="#{p.dataCriacao}" sortBy="#{p.dataCriacao}" headerText="Data do pedido" filterMatchMode="contains">
-						<h:outputText value="#{p.dataCriacao}" />
+						<h:outputText value="#{p.dataCriacao}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
 					</p:column>
-					<p:column filterBy="#{p.creditos}" sortBy="#{p.creditos}" headerText="Qtd." filterMatchMode="contains">
+					<p:column filterBy="#{p.creditos}" sortBy="#{p.creditos}" headerText="Quantidade de créditos" filterMatchMode="contains">
 						<h:outputText value="#{p.creditos}" />
 					</p:column>
 					<p:column filterBy="#{p.valorUnitario}" sortBy="#{p.valorUnitario}" headerText="Valor Unitário" filterMatchMode="contains">
-						<h:outputText value="#{p.valorUnitario}" />
+						<h:outputText value="#{p.valorUnitario}">
+							<f:convertNumber currencySymbol="R$" type="currency" locale="pt-BR" />
+						</h:outputText>
 					</p:column>
 					<p:column filterBy="#{p.valorTotal}" sortBy="#{p.valorTotal}" headerText="Valor Total" filterMatchMode="contains">
-						<h:outputText value="#{p.valorTotal}" />
+						<h:outputText value="#{p.valorTotal}">
+							<f:convertNumber currencySymbol="R$" type="currency" locale="pt-BR" />
+						</h:outputText>
 					</p:column>
 					<p:column filterBy="#{p.statusStr}" sortBy="#{p.statusStr}" headerText="Status" filterMatchMode="contains">
 						<h:outputText value="#{p.statusStr}" />
 					</p:column>
 					<p:column filterBy="#{p.dataAprovacao}" sortBy="#{p.dataAprovacao}" headerText="Data de aprovação" filterMatchMode="contains">
-						<h:outputText value="#{p.dataAprovacao}" />
+						<h:outputText value="#{p.dataAprovacao}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Visualizar">
-						<a href="#{p.url}" target="_blank" style="color: #0c0cff; text-decoration: underline;">Ver Fatura</a>
+						<a href="#{p.url}" target="_blank" style="color: #0c0cff; text-decoration: underline;">Fatura</a>
 					</p:column>
 
 				</p:dataTable>

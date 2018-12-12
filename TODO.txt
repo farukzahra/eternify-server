@@ -4,7 +4,5 @@ Esconder pass
   https://stackoverflow.com/questions/37404703/spring-boot-how-to-hide-passwords-in-properties-file
   
   
-
- Login
- 	Atualizar status das faturas
- 	 - Somar os creditos no usuario qdo estiver pendente para outra coisa
+Criar configuracao no banco
+  Valor por crédito

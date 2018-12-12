@@ -47,6 +47,10 @@
 					<ui:insert name="content">
                         Template
                     </ui:insert>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="OK" type="button" styleClass="White ui-confirmdialog-yes" icon="fa fa-check" />
+						<p:commandButton value="Cancelar" type="button" styleClass="White ui-confirmdialog-no" icon="fa fa-times" />
+					</p:confirmDialog>
 				</h:form>
 
 				<ui:include src="footer.xhtml" />
