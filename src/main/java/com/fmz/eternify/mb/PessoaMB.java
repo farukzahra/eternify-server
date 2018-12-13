@@ -37,12 +37,20 @@ public class PessoaMB {
 		Usuario usuarioLogado = JSFHelper.getUsuarioLogado();
 		if (usuarioLogado.getCreditos() != null && usuarioLogado.getCreditos() > 0) {
 			pessoa.setUsuario(usuarioLogado);
-			pessoaController.addPessoa(pessoa);
+			pessoaController.addPessoa(pessoa, usuarioLogado);
 			pessoa = new Pessoa();
 			PrimeFaces.current().resetInputs("form:pnDados");
-			usuarioController.debitarCredito(usuarioLogado);
 			carregarLista();
 			JSFHelper.addInfo("Memória cadastrada com sucesso!", "");
+		} else {
+			JSFHelper.addError("Créditos insuficientes!", "");
+		}
+	}
+
+	public void reativarPessoa(Pessoa pessoa) {
+		Usuario usuarioLogado = JSFHelper.getUsuarioLogado();
+		if (usuarioLogado.getCreditos() != null && usuarioLogado.getCreditos() > 0) {
+			pessoaController.reativarPessoa(pessoa,usuarioLogado);
 		} else {
 			JSFHelper.addError("Créditos insuficientes!", "");
 		}

@@ -15,8 +15,12 @@ public class ConfigController {
 	@Autowired
 	ConfigRepository configRepository;
 
-	public Config getValorTransacao() {
-		return configRepository.findByChave(Config.VALOR_TRANSACAO).get(0);
+	public Integer getValorTransacao() {
+		return configRepository.findByChave(Config.VALOR_TRANSACAO).get(0).getValorAsInteger();
+	}
+	
+	public String getCreditoExpirado(String emailUsuario) {
+		return configRepository.findByChave(Config.CREDITO_EXPIRADO).get(0).getValor().replaceAll("#usuario", emailUsuario);
 	}
 
 }

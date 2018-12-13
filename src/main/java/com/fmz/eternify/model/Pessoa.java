@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -89,7 +90,17 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updatedAt;
+	
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private Date ativacaoCredito;
 
+	
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private Date expiracaoCredito;
 	public String getQrCode() {
 		return "http://eternify.com.br/findpessoa.jsf?pessoa=" + id;
 	}
@@ -179,6 +190,10 @@ public class Pessoa implements Serializable {
 		}
 
 	}
-	
-	
+
+	@Transient
+	public boolean isCreditoExpirado() {
+		return getExpiracaoCredito().before(Calendar.getInstance().getTime());
+	}
+		
 }

@@ -40,10 +40,10 @@ public class FaturaMB {
 
 	public void addFatura() {
 		Usuario usuarioLogado = JSFHelper.getUsuarioLogado();
-		InvoiceResponse invoiceResponse = Iugu.criarFatura(usuarioLogado, fatura.getCreditos(), configController.getValorTransacao().getValorAsInteger());
+		InvoiceResponse invoiceResponse = Iugu.criarFatura(usuarioLogado, fatura.getCreditos(), configController.getValorTransacao());
 		System.out.println(invoiceResponse);
 		fatura.setIdIugu(invoiceResponse.getId());
-		fatura.setValorUnitario(new BigDecimal(configController.getValorTransacao().getValorAsInteger() / 100));
+		fatura.setValorUnitario(new BigDecimal(configController.getValorTransacao() / 100));
 		fatura.setValorTotal(fatura.getValorUnitario().multiply(new BigDecimal(fatura.getCreditos())));
 		fatura.setUsuario(usuarioLogado);
 		fatura.setStatus("pending");

@@ -29,6 +29,8 @@ public class Config implements Serializable {
 	private String valor;
 	
 	public static final String VALOR_TRANSACAO = "VT";
+	
+	public static final String CREDITO_EXPIRADO = "CE";
 
 	public int getValorAsInteger() {
 		return Integer.parseInt(valor);

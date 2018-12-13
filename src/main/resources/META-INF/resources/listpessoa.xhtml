@@ -9,25 +9,41 @@
 
 		<div class="Container100">
 			<div class="Card">
+				<h:panelGroup id="pnDados">
 
-				<h1 class="CardBigTopic">Minhas Memórias</h1>
-				<div class="SeparatorFull"></div>
+					<h1 class="CardBigTopic">Minhas Memórias</h1>
+					<div class="SeparatorFull"></div>
 
 
-				<p:separator />
+					<p:separator />
 
-				<p:dataTable var="p" value="#{pessoaMB.pessoas}" rows="10" paginator="true"
-					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
-					<p:column filterBy="#{p.nome}" sortBy="#{p.nome}" headerText="Nome" filterMatchMode="contains" width="60%">
-						<h:outputText value="#{p.nome}" />
-					</p:column>
-					<p:column>
-						<p:commandButton value="QRCODE" process="@this" update=":form:barcode" icon="fa fa-link" onclick="PF('dlgBarcode').show()" styleClass="GreenButton White">
-							<f:setPropertyActionListener value="#{p}" target="#{pessoaMB.pessoa}" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
+					<p:dataTable var="p" value="#{pessoaMB.pessoas}" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
+						paginatorPosition="bottom">
+						<p:column filterBy="#{p.nome}" sortBy="#{p.nome}" headerText="Nome" filterMatchMode="contains">
+							<h:outputText value="#{p.nome}" />
+						</p:column>
+						<p:column filterBy="#{p.ativacaoCredito}" sortBy="#{p.ativacaoCredito}" headerText="Ativação do crédito" filterMatchMode="contains">
+							<h:outputText value="#{p.ativacaoCredito}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</h:outputText>
+						</p:column>
+						<p:column filterBy="#{p.expiracaoCredito}" sortBy="#{p.expiracaoCredito}" headerText="Expiração do crédito" filterMatchMode="contains">
+							<h:outputText value="#{p.expiracaoCredito}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</h:outputText>							
+						</p:column>
+						<p:column headerText="Ações">
+							<p:commandButton value="QRCODE" process="@this" update=":form:barcode" icon="fa fa-link" onclick="PF('dlgBarcode').show()" styleClass="GreenButton White">
+								<f:setPropertyActionListener value="#{p}" target="#{pessoaMB.pessoa}" />
+							</p:commandButton>
+							<p:commandButton id="submit" value="Reativar Memória" process="@this" actionListener="#{pessoaMB.reativarPessoa(p)}" update=":form:pnDados,creditosBar" icon="fa fa-money" styleClass="White GreenButton" rendered="#{!p.creditoExpirado}">
+								<p:confirm header="Confirmação" message="Ao reativar esta memória 1 crédito será debitado de sua conta." icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
 
+				</h:panelGroup>
 			</div>
 		</div>
 

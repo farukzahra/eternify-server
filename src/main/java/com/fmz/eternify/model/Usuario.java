@@ -22,29 +22,39 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Usuario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String login, senha, nome, email;
+	private String login, senha, nome, email;
 
-    private String cpfCnpj;
-    private String cep;
-    private String rua;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private Integer numero;
-    private String idIugu;
-    
-    private Integer creditos;
+	private String cpfCnpj;
+	private String cep;
+	private String rua;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private Integer numero;
+	private String idIugu;
 
-    public Usuario(@NotBlank String login, @NotBlank String senha) {
-        super();
-        this.login = login;
-        this.senha = senha;
-    }
+	private Integer creditos;
 
-	
+	public Usuario(@NotBlank String login, @NotBlank String senha) {
+		super();
+		this.login = login;
+		this.senha = senha;
+	}
+
+	public String getCreditosMsg() {
+		String msg = "";
+		if (creditos == null || creditos == 0) {
+			msg = "Você não possui nenhum crédito, compre <a href=\"fatura.jsf\" style='text-decoration: underline;color: yellow;'><span>aqui</span></a>";
+		} else if (creditos == 1) {
+			msg = creditos + " crédito restante";
+		} else {
+			msg = creditos + " créditos restantes";
+		}
+		return msg;
+	}
 
 }

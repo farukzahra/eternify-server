@@ -85,7 +85,7 @@ public class LoginMB {
     public void doTrocarSenha() {
         try {
             String msg = usuarioController.trocarSenha(usuarioLogado, senhaAtual, novaSenha, novaSenhaConfirmacao);
-            JSFHelper.addError(msg, "");
+            JSFHelper.addInfo(msg, "");
         } catch (Exception e) {
             e.printStackTrace();
         }

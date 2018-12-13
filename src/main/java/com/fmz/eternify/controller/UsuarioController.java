@@ -15,6 +15,7 @@ import com.fmz.eternify.iugu.model.CustomVariable;
 import com.fmz.eternify.iugu.model.Customer;
 import com.fmz.eternify.iugu.responses.CustomerResponse;
 import com.fmz.eternify.iugu.services.Iugu;
+import com.fmz.eternify.model.CreditosLog;
 import com.fmz.eternify.model.Usuario;
 import com.fmz.eternify.repository.UsuarioRepository;
 import com.fmz.eternify.utils.CryptMD5;
@@ -32,6 +33,9 @@ public class UsuarioController {
 
 	@Autowired
 	EmailController emailController;
+
+	@Autowired
+	CreditosLogController creditosLogController;
 
 	@PostMapping("/login")
 	public Usuario login(@Valid @RequestBody Usuario usuario) {
@@ -84,7 +88,7 @@ public class UsuarioController {
 		Customer customerIugu = new Customer(usuario.getEmail(), usuario.getNome(), usuario.getCpfCnpj(),
 				usuario.getCep(), usuario.getNumero(), usuario.getRua(), usuario.getBairro(), usuario.getCidade(),
 				usuario.getEstado());
-		CustomVariable cv = new CustomVariable("intelidente_2", "true");
+		CustomVariable cv = new CustomVariable("eternify", "true");
 
 		ArrayList<CustomVariable> cvlist = new ArrayList<>();
 		cvlist.add(cv);
@@ -93,13 +97,17 @@ public class UsuarioController {
 		usuario.setIdIugu(usuarioIugu.getId());
 	}
 
-	public void debitarCredito(Usuario usuarioLogado) {
-		usuarioLogado.setCreditos(usuarioLogado.getCreditos() - 1);
-		usuarioRepository.save(usuarioLogado);
+	public void debitarCredito(Usuario usuario) {
+		creditosLogController
+				.addLog(new CreditosLog(CreditosLog.DEBITO, usuario.getCreditos(), -1, usuario.getCreditos() - 1, usuario));
+		usuario.setCreditos(usuario.getCreditos() - 1);
+		usuarioRepository.save(usuario);
 	}
 
 	public void creditarCreditos(Usuario usuario, Integer creditos) {
 		Integer creditosAtuais = usuario.getCreditos() != null ? usuario.getCreditos() : 0;
+		creditosLogController.addLog(new CreditosLog(CreditosLog.CREDITO, usuario.getCreditos(), creditos,
+				usuario.getCreditos() + creditos, usuario));
 		usuario.setCreditos(creditosAtuais + creditos);
 		usuarioRepository.save(usuario);
 	}
