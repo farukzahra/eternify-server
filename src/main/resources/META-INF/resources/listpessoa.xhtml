@@ -37,7 +37,7 @@
 							<p:commandButton value="QRCODE" process="@this" update=":form:barcode" icon="fa fa-link" onclick="PF('dlgBarcode').show()" styleClass="GreenButton White">
 								<f:setPropertyActionListener value="#{p}" target="#{pessoaMB.pessoa}" />
 							</p:commandButton>
-							<p:commandButton id="submit" value="Reativar Memória" process="@this" actionListener="#{pessoaMB.reativarPessoa(p)}" update=":form:pnDados,creditosBar" icon="fa fa-money" styleClass="White GreenButton" rendered="#{!p.creditoExpirado}">
+							<p:commandButton id="submit" value="Reativar Memória" process="@this" actionListener="#{pessoaMB.reativarPessoa(p)}" update=":form:pnDados,creditosBar" icon="fa fa-money" styleClass="White GreenButton" rendered="#{p.creditoExpirado}">
 								<p:confirm header="Confirmação" message="Ao reativar esta memória 1 crédito será debitado de sua conta." icon="fa fa-exclamation-triangle" />
 							</p:commandButton>
 						</p:column>

@@ -31,12 +31,15 @@ public class PessoaController {
 
 	@PostMapping("/add")
 	public void addPessoa(@Valid @RequestBody Pessoa pessoa, @Valid @RequestBody Usuario usuario) {
-		Calendar c = Calendar.getInstance();
-		pessoa.setAtivacaoCredito(c.getTime());
-		c.add(Calendar.YEAR, 1);
-		pessoa.setExpiracaoCredito(c.getTime());
+
+		if (pessoa.getAtivacaoCredito() == null) {
+			usuarioController.debitarCredito(usuario);
+			Calendar c = Calendar.getInstance();
+			pessoa.setAtivacaoCredito(c.getTime());
+			c.add(Calendar.YEAR, 1);
+			pessoa.setExpiracaoCredito(c.getTime());
+		}
 		pessoaRepository.save(pessoa);
-		usuarioController.debitarCredito(usuario);
 	}
 
 	public void reativarPessoa(Pessoa pessoa, Usuario usuario) {
